@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/star_32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/star_16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"meteorvanish.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="本文是夏季学期PPCA课程Project 1: RISC-V Simulator的README，具体代码见Github仓库。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RISC-V Simulator">
+<meta property="og:url" content="https://meteorvanish.github.io/2022/07/02/RISC-V-Simulator/index.html">
+<meta property="og:site_name" content="MeteorVanish&#39;s World">
+<meta property="og:description" content="本文是夏季学期PPCA课程Project 1: RISC-V Simulator的README，具体代码见Github仓库。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://meteorvanish.github.io/2022/07/02/RISC-V-Simulator/Pipeline_Architecture.png">
+<meta property="article:published_time" content="2022-07-02T11:23:32.000Z">
+<meta property="article:modified_time" content="2022-07-02T11:27:27.456Z">
+<meta property="article:author" content="MeteorVanish">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://meteorvanish.github.io/2022/07/02/RISC-V-Simulator/Pipeline_Architecture.png">
+
+<link rel="canonical" href="https://meteorvanish.github.io/2022/07/02/RISC-V-Simulator/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>RISC-V Simulator | MeteorVanish's World</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <!-- <div class="headband"></div> -->
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">MeteorVanish's World</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-resources">
+
+    <a href="/resources/" rel="section"><i class="fa fa-book fa-fw"></i>资源</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://meteorvanish.github.io/2022/07/02/RISC-V-Simulator/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="MeteorVanish">
+      <meta itemprop="description" content="记录学习道路上的所思所想">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MeteorVanish's World">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          RISC-V Simulator
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-07-02 19:23:32 / 修改时间：19:27:27" itemprop="dateCreated datePublished" datetime="2022-07-02T19:23:32+08:00">2022-07-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/" itemprop="url" rel="index"><span itemprop="name">CS学习之路</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>    本文是夏季学期PPCA课程Project 1: RISC-V
+Simulator的README，具体代码见<a target="_blank" rel="noopener" href="https://github.com/MeteorVanish/RISC-V-Simulator">Github仓库</a>。</p>
+<span id="more"></span>
+<h1 id="risc-v-simulator">RISC-V Simulator</h1>
+<h2 id="简介">简介</h2>
+<ul>
+<li>上海交通大学，2021级CS，MeteorVanish</li>
+<li>2021-2022学年夏季学期，PPCA Project 1</li>
+<li>用 C++ 模拟 CPU 五级流水，使用 <code>RISC-V</code> 指令集</li>
+</ul>
+<h2 id="实现成果">实现成果</h2>
+<ul>
+<li>各阶段可乱序执行（模拟硬件并行）</li>
+<li>通过 <code>Forwarding</code> 尽量避免
+<code>Stall</code>，减少时钟周期</li>
+<li>采用混合分支预测，平均准确率为
+<code>80.94%</code>（详见后文各测试点预测准确率）</li>
+</ul>
+<h2 id="五级流水">五级流水</h2>
+<h3 id="架构设计图">架构设计图</h3>
+<figure>
+<img src="/2022/07/02/RISC-V-Simulator/Pipeline_Architecture.png" alt="架构设计图">
+<figcaption aria-hidden="true">架构设计图</figcaption>
+</figure>
+<h3 id="各阶段说明">各阶段说明</h3>
+<ul>
+<li><code>IF (Instruction Fetch)</code>
+<ul>
+<li>消耗一个时钟周期</li>
+<li>内存中读取指令，分支预测</li>
+</ul></li>
+<li><code>ID (Instruction Decode)</code>
+<ul>
+<li>消耗一个时钟周期</li>
+<li>指令解码，读取寄存器</li>
+</ul></li>
+<li><code>EX (EXecute)</code>
+<ul>
+<li>消耗一个时钟周期</li>
+<li>获取计算结果、目标内存地址（Load/Store）、下条指令地址（Jump/Branch），更新预测器</li>
+</ul></li>
+<li><code>MEM (MEMory access)</code>
+<ul>
+<li><code>Load/Store</code>
+指令消耗三个时钟周期，其余消耗一个时钟周期</li>
+<li>写入/读取内存地址（Load/Store）</li>
+</ul></li>
+<li><code>WB (Write Back)</code>
+<ul>
+<li>消耗一个时钟周期</li>
+<li>写入寄存器</li>
+</ul></li>
+</ul>
+<h3 id="缩写说明">缩写说明</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>缩写</strong></th>
+<th style="text-align: center;"><strong>全称</strong></th>
+<th style="text-align: center;"><strong>含义</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">PC</td>
+<td style="text-align: center;">Program Counter</td>
+<td style="text-align: center;">指令地址</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">INS</td>
+<td style="text-align: center;">Instuction</td>
+<td style="text-align: center;">指令</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">OPCODE</td>
+<td style="text-align: center;">Operation Code</td>
+<td style="text-align: center;">指令操作码</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">IMM</td>
+<td style="text-align: center;">Immediate</td>
+<td style="text-align: center;">立即数</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">RS</td>
+<td style="text-align: center;">Register Source</td>
+<td style="text-align: center;">来源寄存器编号</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">RV</td>
+<td style="text-align: center;">Register Value</td>
+<td style="text-align: center;">来源寄存器的值</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">RD</td>
+<td style="text-align: center;">Register Destination</td>
+<td style="text-align: center;">目标寄存器编号</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">AD</td>
+<td style="text-align: center;">Address Destination</td>
+<td style="text-align: center;">目标地址</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">EXR</td>
+<td style="text-align: center;">Execution Result</td>
+<td style="text-align: center;">计算结果</td>
+</tr>
+</tbody>
+</table>
+<h2 id="问题及解决方案">问题及解决方案</h2>
+<ul>
+<li><code>Data Hazard</code>
+<ul>
+<li><strong>问题：</strong> 当前指令的 <code>rs</code> 是前三条指令的
+<code>rd</code> （尚未将新值写入寄存器）</li>
+<li><strong>解决方案：</strong>
+<strong>Forwarding</strong>，即将之前指令计算后存在对应
+<code>Buffer</code> 中的值复制到当前指令的 <code>Buffer</code> 中</li>
+<li><strong>问题：</strong> 当前指令的 <code>rs</code>
+是上条指令（Load）的 <code>rd</code> （尚未从内存中读取寄存器的值）</li>
+<li><strong>解决方案：</strong> <strong>Stall</strong>，即将
+<code>IF、ID、EX</code> 暂停一个时钟周期，对应 <code>Buffer</code>
+的值保留</li>
+</ul></li>
+<li><code>Control Hazard</code>
+<ul>
+<li><strong>问题：</strong> 分支预测结果错误</li>
+<li><strong>解决方案：</strong> <strong>Discard</strong>，即将
+<code>IF/ID.Buffer</code> 中的值清空，更新下条指令地址</li>
+</ul></li>
+</ul>
+<h2 id="文件结构">文件结构</h2>
+<ul>
+<li><strong>main.cpp</strong>
+<ul>
+<li><code>main</code> 函数</li>
+</ul></li>
+<li><strong>CPU.hpp</strong>
+<ul>
+<li><code>CPU</code> 类
+<ul>
+<li><strong>成员变量</strong>
+<ul>
+<li>内存对象、寄存器对象、预测器对象、五阶段对象、五阶段
+<code>Buffer</code>、<code>pc</code>、<code>pcNext</code>、各种
+<code>Flag/Cnt</code></li>
+</ul></li>
+<li><strong>成员函数</strong>
+<ul>
+<li><code>run()</code>：模拟时钟周期乱序执行五阶段（模拟五阶段并行）</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Stage.hpp</strong>
+<ul>
+<li><code>stageIF/ID/EX/MEM/WB</code> 类
+<ul>
+<li><strong>成员变量</strong>
+<ul>
+<li><code>Buffer</code>、<code>NOPFlag</code>以及一些CPU成员变量的引用</li>
+</ul></li>
+<li><strong>成员函数</strong>
+<ul>
+<li><code>execute()</code>：执行各阶段功能，得到 <code>Buffer</code>
+数据</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Memory.hpp</strong>
+<ul>
+<li><code>Memory</code> 类
+<ul>
+<li><strong>成员变量</strong>
+<ul>
+<li><code>Data[]</code>
+<ul>
+<li>每一位存1 Byte的数据的数组</li>
+</ul></li>
+</ul></li>
+<li><strong>成员函数</strong>
+<ul>
+<li><code>构造函数</code>：读取输入数据存入 <code>Data</code> 中</li>
+<li><code>Load()</code>：读取 <code>pos</code> 开始 <code>len</code>
+个Byte的数据</li>
+<li><code>Store()</code>：将 <code>val</code> 写入 <code>pos</code> 开始
+<code>len</code> 个Byte中</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Register.hpp</strong>
+<ul>
+<li><code>RegTable</code>
+<ul>
+<li><code>RISC-V</code> 寄存器名称表</li>
+</ul></li>
+<li><code>Register</code> 类
+<ul>
+<li><strong>成员变量</strong>
+<ul>
+<li><code>Data[32]</code>
+<ul>
+<li>32个32位寄存器</li>
+</ul></li>
+</ul></li>
+<li><strong>成员函数</strong>
+<ul>
+<li><code>Load()</code>：读取第 <code>index</code> 个寄存器的数据</li>
+<li><code>Store()</code>：将 <code>val</code> 写入第 <code>index</code>
+个寄存器中（特判zero寄存器不可修改）</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Buffer.hpp</strong>
+<ul>
+<li><code>IF/ID/EX/MEM/WB_Buffer</code> 结构体
+<ul>
+<li><strong>成员变量</strong>
+<ul>
+<li>对应阶段需保存的数据（确保可以乱序执行）</li>
+</ul></li>
+<li><strong>成员函数</strong>
+<ul>
+<li><code>Clear()</code>：清空 <code>Buffer</code></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Predictor.hpp</strong>
+<ul>
+<li><code>Predictor</code> 类
+<ul>
+<li><strong>成员变量</strong>
+<ul>
+<li><code>TotalNum</code>,<code>CorrectNum</code>
+<ul>
+<li>用于记录预测准确率</li>
+</ul></li>
+<li><code>Counter[]</code>
+<ul>
+<li>记录指令的预测次数，用于决策预测方法</li>
+</ul></li>
+<li><code>BTB[]</code>
+<ul>
+<li>Branch Target Buffer，记录跳转地址</li>
+</ul></li>
+<li><code>BHT[]</code>
+<ul>
+<li>Branch History Table，记录历史跳转模式</li>
+</ul></li>
+<li><code>PHT[][]</code>
+<ul>
+<li>Pattern History Table，每条指令特定模式的四位饱和计数器</li>
+</ul></li>
+<li><code>TwoBitCounter[]</code>
+<ul>
+<li>每条指令简单的四位饱和计数器</li>
+</ul></li>
+</ul></li>
+<li><strong>成员函数</strong>
+<ul>
+<li><code>构造函数</code>：初始化将所有四位饱和设置为
+<code>not taken</code> 情况下的最大值，将 <code>BTB[]</code> 设置为对应
+<code>pc</code> 地址+4</li>
+<li><code>NextPredict()</code>：预测下条指令地址，修改
+<code>pcNext</code> 和 <code>pcPredict</code> 的值</li>
+<li><code>Update()</code>：根据 <code>EX</code>
+阶段得到的跳转地址更新预测器</li>
+<li><code>PrintResult()</code>：用于输出预测准确率</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Instruction.hpp</strong>
+<ul>
+<li><code>InsTable</code>
+<ul>
+<li><code>RISC-V</code> 指令名称表</li>
+</ul></li>
+<li><code>enum INS_TYPE</code>
+<ul>
+<li><code>RISC-V</code> 指令名称枚举</li>
+</ul></li>
+<li><code>Is___()</code>
+<ul>
+<li>指令类型判断</li>
+</ul></li>
+<li><code>SignExtend()</code>
+<ul>
+<li>指令符号位扩展</li>
+</ul></li>
+<li><code>InsDecode()</code>
+<ul>
+<li>指令解码，获得
+<code>InsType</code>，<code>rd</code>，<code>imm</code>，<code>rs1</code>，<code>rs2</code>，<code>RegNum</code></li>
+</ul></li>
+</ul></li>
+<li><strong>LocalTest.hpp</strong>
+<ul>
+<li>在OJ上评测时注释 <code>CPU.hpp</code> 中的
+<code>#include "LocalTest.h"</code> 即可 <code>AC</code></li>
+<li><code>#define RISC_V_DEBUG</code>
+<ul>
+<li>取消注释会打印每个测试点每个时钟周期结束后寄存器与
+<code>Buffer</code> 中的数据</li>
+</ul></li>
+<li><code>#define RISC_V_PRINT</code>
+<ul>
+<li>取消注释会打印每个测试点总时钟周期、分支预测总数、正确数和准确率</li>
+</ul></li>
+<li><code>FileTable</code>
+<ul>
+<li>测试点文件名称表</li>
+</ul></li>
+<li><code>AnsTable</code>
+<ul>
+<li>测试点答案表</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="分支预测">分支预测</h2>
+<h3 id="具体方法">具体方法</h3>
+<p>在 <code>IF</code> 阶段以 <code>pc</code> 为依据进行分支预测，在
+<code>EX</code> 阶段根据跳转结果更新分支预测器</p>
+<ul>
+<li><strong>四位饱和计数器预测</strong>
+<ul>
+<li><strong>实现：</strong>
+<ul>
+<li><code>IF</code>：通过 <code>BTB[]</code> 获得分支跳转地址，通过
+<code>FourBitCounter[]</code> 判断是否跳转</li>
+<li><code>EX</code>：第一次跳转时更新 <code>BTB[]</code>，每次更新
+<code>FourBitCounter[]</code></li>
+</ul></li>
+</ul></li>
+<li><strong>二级自适应预测</strong>
+<ul>
+<li><strong>实现：</strong>
+<ul>
+<li><code>IF</code>：通过 <code>BTB[]</code> 获得分支跳转地址，通过
+<code>BHT[]</code> 获得历史跳转模式，通过 <code>PHT[][]</code>
+判断是否跳转</li>
+<li><code>EX</code>：第一次跳转时更新 <code>BTB[]</code>，每次更新
+<code>BHT[]</code> 和对应的 <code>PHT[][]</code></li>
+</ul></li>
+</ul></li>
+<li><strong>混合分支预测</strong>
+<ul>
+<li><strong>思路：</strong>
+二级自适应预测能够对不同的历史跳转模式记录饱和计数器，这在预测数多的情况下，能记录更多的历史跳转信息，相比饱和计数器预测更有针对性，
+准确率占优势，但在预测数较少的情况下，每种模式第一次跳转都将预测失败，反而导致准确率降低，因此选择一条标准线，对每条指令而言，预测数量超过标准线
+后再采用二级自适应预测，否则采用四位饱和计数器预测，这样兼顾了前两种预测方法的优点，综合预测准确率有一定的提升。</li>
+<li><strong>实现：</strong>
+<ul>
+<li><code>IF</code>：当 <code>Counter[]</code> 大于
+<code>SWITCH_THRESHOLD</code>
+时采用二级自适应预测，否则采取四位饱和计数器预测</li>
+<li><code>EX</code>：第一次跳转时更新 <code>BTB[]</code>，每次更新
+<code>Counter[]</code>，并同时更新 <code>FourBitCounter[]</code> 和
+<code>BHT[]</code>，<code>PHT[][]</code></li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="预测准确率混合分支预测">预测准确率（混合分支预测）</h3>
+<ul>
+<li><strong>四位饱和计数器预测</strong>（平均预测准确率：<code>75.44%</code>）</li>
+</ul>
+<table>
+<colgroup>
+<col style="width: 27%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>测试点</strong></th>
+<th style="text-align: center;"><strong>时钟周期数</strong></th>
+<th style="text-align: center;"><strong>预测准确率</strong></th>
+<th style="text-align: center;"><strong>预测正确数</strong></th>
+<th style="text-align: center;"><strong>预测总数</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">array_test1</td>
+<td style="text-align: center;">299</td>
+<td style="text-align: center;">54.55%</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">22</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">array_test2</td>
+<td style="text-align: center;">351</td>
+<td style="text-align: center;">57.69%</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">26</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">basicopt1</td>
+<td style="text-align: center;">664485</td>
+<td style="text-align: center;">82.98%</td>
+<td style="text-align: center;">128727</td>
+<td style="text-align: center;">155139</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">bulgarian</td>
+<td style="text-align: center;">641530</td>
+<td style="text-align: center;">93.77%</td>
+<td style="text-align: center;">67041</td>
+<td style="text-align: center;">71493</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">expr</td>
+<td style="text-align: center;">614</td>
+<td style="text-align: center;">83.78%</td>
+<td style="text-align: center;">93</td>
+<td style="text-align: center;">111</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">gcd</td>
+<td style="text-align: center;">629</td>
+<td style="text-align: center;">68.33%</td>
+<td style="text-align: center;">82</td>
+<td style="text-align: center;">120</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">hanoi</td>
+<td style="text-align: center;">351242</td>
+<td style="text-align: center;">73.35%</td>
+<td style="text-align: center;">12805</td>
+<td style="text-align: center;">17457</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">lvalue2</td>
+<td style="text-align: center;">74</td>
+<td style="text-align: center;">66.67%</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">magic</td>
+<td style="text-align: center;">936056</td>
+<td style="text-align: center;">81.00%</td>
+<td style="text-align: center;">54971</td>
+<td style="text-align: center;">67869</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">manyarguments</td>
+<td style="text-align: center;">88</td>
+<td style="text-align: center;">60.00%</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">multiarray</td>
+<td style="text-align: center;">2599</td>
+<td style="text-align: center;">83.33%</td>
+<td style="text-align: center;">135</td>
+<td style="text-align: center;">162</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">naive</td>
+<td style="text-align: center;">42</td>
+<td style="text-align: center;">/</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">pi</td>
+<td style="text-align: center;">117739039</td>
+<td style="text-align: center;">83.64%</td>
+<td style="text-align: center;">33418674</td>
+<td style="text-align: center;">39956380</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">qsort</td>
+<td style="text-align: center;">2244586</td>
+<td style="text-align: center;">89.07%</td>
+<td style="text-align: center;">178189</td>
+<td style="text-align: center;">200045</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">queens</td>
+<td style="text-align: center;">1045312</td>
+<td style="text-align: center;">75.99%</td>
+<td style="text-align: center;">58599</td>
+<td style="text-align: center;">77116</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">statement_test</td>
+<td style="text-align: center;">1460</td>
+<td style="text-align: center;">61.39%</td>
+<td style="text-align: center;">124</td>
+<td style="text-align: center;">202</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">superloop</td>
+<td style="text-align: center;">579101</td>
+<td style="text-align: center;">92.28%</td>
+<td style="text-align: center;">401458</td>
+<td style="text-align: center;">435027</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">tak</td>
+<td style="text-align: center;">2971489</td>
+<td style="text-align: center;">74.68%</td>
+<td style="text-align: center;">45286</td>
+<td style="text-align: center;">60639</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>二级自适应预测</strong>（平均预测准确率：<code>76.87%</code>）</li>
+</ul>
+<table>
+<colgroup>
+<col style="width: 27%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>测试点</strong></th>
+<th style="text-align: center;"><strong>时钟周期数</strong></th>
+<th style="text-align: center;"><strong>预测准确率</strong></th>
+<th style="text-align: center;"><strong>预测正确数</strong></th>
+<th style="text-align: center;"><strong>预测总数</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">array_test1</td>
+<td style="text-align: center;">299</td>
+<td style="text-align: center;">54.55%</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">22</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">array_test2</td>
+<td style="text-align: center;">355</td>
+<td style="text-align: center;">50.00%</td>
+<td style="text-align: center;">13</td>
+<td style="text-align: center;">26</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">basicopt1</td>
+<td style="text-align: center;">613743</td>
+<td style="text-align: center;">99.33%</td>
+<td style="text-align: center;">154098</td>
+<td style="text-align: center;">155139</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">bulgarian</td>
+<td style="text-align: center;">640080</td>
+<td style="text-align: center;">94.79%</td>
+<td style="text-align: center;">67766</td>
+<td style="text-align: center;">71493</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">expr</td>
+<td style="text-align: center;">660</td>
+<td style="text-align: center;">63.06%</td>
+<td style="text-align: center;">70</td>
+<td style="text-align: center;">111</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">gcd</td>
+<td style="text-align: center;">645</td>
+<td style="text-align: center;">61.67%</td>
+<td style="text-align: center;">74</td>
+<td style="text-align: center;">120</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">hanoi</td>
+<td style="text-align: center;">342530</td>
+<td style="text-align: center;">98.30%</td>
+<td style="text-align: center;">17161</td>
+<td style="text-align: center;">17457</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">lvalue2</td>
+<td style="text-align: center;">74</td>
+<td style="text-align: center;">66.67%</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">magic</td>
+<td style="text-align: center;">928756</td>
+<td style="text-align: center;">86.37%</td>
+<td style="text-align: center;">58621</td>
+<td style="text-align: center;">67869</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">manyarguments</td>
+<td style="text-align: center;">84</td>
+<td style="text-align: center;">80.00%</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">multiarray</td>
+<td style="text-align: center;">2731</td>
+<td style="text-align: center;">42.59%</td>
+<td style="text-align: center;">69</td>
+<td style="text-align: center;">162</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">naive</td>
+<td style="text-align: center;">42</td>
+<td style="text-align: center;">/</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">pi</td>
+<td style="text-align: center;">117608981</td>
+<td style="text-align: center;">83.80%</td>
+<td style="text-align: center;">33483703</td>
+<td style="text-align: center;">39956380</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">qsort</td>
+<td style="text-align: center;">2213370</td>
+<td style="text-align: center;">96.88%</td>
+<td style="text-align: center;">193797</td>
+<td style="text-align: center;">200045</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">queens</td>
+<td style="text-align: center;">1034246</td>
+<td style="text-align: center;">83.16%</td>
+<td style="text-align: center;">64132</td>
+<td style="text-align: center;">77116</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">statement_test</td>
+<td style="text-align: center;">1460</td>
+<td style="text-align: center;">61.39%</td>
+<td style="text-align: center;">124</td>
+<td style="text-align: center;">202</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">superloop</td>
+<td style="text-align: center;">518797</td>
+<td style="text-align: center;">99.21%</td>
+<td style="text-align: center;">431610</td>
+<td style="text-align: center;">435027</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">tak</td>
+<td style="text-align: center;">2959051</td>
+<td style="text-align: center;">84.94%</td>
+<td style="text-align: center;">51505</td>
+<td style="text-align: center;">60639</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>混合分支预测</strong>（平均预测准确率：<code>80.94%</code>）</li>
+</ul>
+<table>
+<colgroup>
+<col style="width: 26%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>测试点</strong></th>
+<th style="text-align: center;"><strong>时钟周期数</strong></th>
+<th style="text-align: center;"><strong>预测准确率</strong></th>
+<th style="text-align: center;"><strong>预测正确数</strong></th>
+<th style="text-align: center;"><strong>预测总数</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">array_test1</td>
+<td style="text-align: center;">299</td>
+<td style="text-align: center;">54.55%</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">22</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">array_test2</td>
+<td style="text-align: center;">351</td>
+<td style="text-align: center;">57.69%</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">26</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">basicopt1</td>
+<td style="text-align: center;">613647</td>
+<td style="text-align: center;">99.36%</td>
+<td style="text-align: center;">154146</td>
+<td style="text-align: center;">155139</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">bulgarian</td>
+<td style="text-align: center;">639830</td>
+<td style="text-align: center;">94.96%</td>
+<td style="text-align: center;">67891</td>
+<td style="text-align: center;">71493</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">expr</td>
+<td style="text-align: center;">614</td>
+<td style="text-align: center;">83.78%</td>
+<td style="text-align: center;">93</td>
+<td style="text-align: center;">111</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">gcd</td>
+<td style="text-align: center;">629</td>
+<td style="text-align: center;">68.33%</td>
+<td style="text-align: center;">82</td>
+<td style="text-align: center;">120</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">hanoi</td>
+<td style="text-align: center;">342524</td>
+<td style="text-align: center;">98.32%</td>
+<td style="text-align: center;">17164</td>
+<td style="text-align: center;">17457</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">lvalue2</td>
+<td style="text-align: center;">74</td>
+<td style="text-align: center;">66.67%</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">magic</td>
+<td style="text-align: center;">928678</td>
+<td style="text-align: center;">86.43%</td>
+<td style="text-align: center;">58660</td>
+<td style="text-align: center;">67869</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">manyarguments</td>
+<td style="text-align: center;">84</td>
+<td style="text-align: center;">80.00%</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">multiarray</td>
+<td style="text-align: center;">2615</td>
+<td style="text-align: center;">78.40%</td>
+<td style="text-align: center;">127</td>
+<td style="text-align: center;">162</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">naive</td>
+<td style="text-align: center;">42</td>
+<td style="text-align: center;">/</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">pi</td>
+<td style="text-align: center;">117608887</td>
+<td style="text-align: center;">83.80%</td>
+<td style="text-align: center;">33483750</td>
+<td style="text-align: center;">39956380</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">qsort</td>
+<td style="text-align: center;">2213326</td>
+<td style="text-align: center;">96.89%</td>
+<td style="text-align: center;">193819</td>
+<td style="text-align: center;">200045</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">queens</td>
+<td style="text-align: center;">1034236</td>
+<td style="text-align: center;">83.17%</td>
+<td style="text-align: center;">64137</td>
+<td style="text-align: center;">77116</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">statement_test</td>
+<td style="text-align: center;">1468</td>
+<td style="text-align: center;">59.41%</td>
+<td style="text-align: center;">120</td>
+<td style="text-align: center;">202</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">superloop</td>
+<td style="text-align: center;">518787</td>
+<td style="text-align: center;">99.22%</td>
+<td style="text-align: center;">431615</td>
+<td style="text-align: center;">435027</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">tak</td>
+<td style="text-align: center;">2959047</td>
+<td style="text-align: center;">84.94%</td>
+<td style="text-align: center;">51507</td>
+<td style="text-align: center;">60639</td>
+</tr>
+</tbody>
+</table>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>MeteorVanish
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://meteorvanish.github.io/2022/07/02/RISC-V-Simulator/" title="RISC-V Simulator">https://meteorvanish.github.io/2022/07/02/RISC-V-Simulator/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/06/20/missing-semester-notes/" rel="prev" title="missing-semester 学习笔记">
+      <i class="fa fa-chevron-left"></i> missing-semester 学习笔记
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#risc-v-simulator"><span class="nav-number">1.</span> <span class="nav-text">RISC-V Simulator</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E6%88%90%E6%9E%9C"><span class="nav-number">1.2.</span> <span class="nav-text">实现成果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4"><span class="nav-number">1.3.</span> <span class="nav-text">五级流水</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%9B%BE"><span class="nav-number">1.3.1.</span> <span class="nav-text">架构设计图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%84%E9%98%B6%E6%AE%B5%E8%AF%B4%E6%98%8E"><span class="nav-number">1.3.2.</span> <span class="nav-text">各阶段说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%A9%E5%86%99%E8%AF%B4%E6%98%8E"><span class="nav-number">1.3.3.</span> <span class="nav-text">缩写说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">1.4.</span> <span class="nav-text">问题及解决方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="nav-number">1.5.</span> <span class="nav-text">文件结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B"><span class="nav-number">1.6.</span> <span class="nav-text">分支预测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E6%96%B9%E6%B3%95"><span class="nav-number">1.6.1.</span> <span class="nav-text">具体方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B%E5%87%86%E7%A1%AE%E7%8E%87%E6%B7%B7%E5%90%88%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B"><span class="nav-number">1.6.2.</span> <span class="nav-text">预测准确率（混合分支预测）</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="MeteorVanish"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">MeteorVanish</p>
+  <div class="site-description" itemprop="description">记录学习道路上的所思所想</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MeteorVanish</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">81k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:13</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
