@@ -29,7 +29,7 @@
 <meta property="og:description" content="本文是MIT课程missing-semester的学习笔记，这是一门介绍计算机工具的课，课时比较短，约为11小时，但涵盖的内容比较丰富。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-06-20T07:04:16.000Z">
-<meta property="article:modified_time" content="2022-07-02T11:14:43.321Z">
+<meta property="article:modified_time" content="2022-07-03T07:27:59.466Z">
 <meta property="article:author" content="MeteorVanish">
 <meta name="twitter:card" content="summary">
 
@@ -225,7 +225,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-02 19:14:43" itemprop="dateModified" datetime="2022-07-02T19:14:43+08:00">2022-07-02</time>
+                <time title="修改时间：2022-07-03 15:27:59" itemprop="dateModified" datetime="2022-07-03T15:27:59+08:00">2022-07-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -243,14 +243,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>581</span>
+              <span>1.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -265,63 +265,193 @@
         <p>    本文是MIT课程missing-semester的学习笔记，这是一门介绍计算机工具的课，课时比较短，约为11小时，但涵盖的内容比较丰富。</p>
 <span id="more"></span>
 <h1 id="class-1-the-shell">Class 1: the shell</h1>
-<h2 id="shell-指令"><code>shell</code> 指令</h2>
+<h2 id="shell-基础指令"><code>shell</code> 基础指令</h2>
 <ul>
-<li>显示当前时间
+<li><p><strong>显示当前时间</strong></p>
 <ul>
-<li>命令： <code>date</code><br>
+<li><strong>命令：</strong><code>date</code><br>
 </li>
-<li>示例输入： <code>date</code><br>
+<li><strong>示例：</strong>
+<ul>
+<li>输入：<code>date</code><br>
 </li>
-<li>示例输出： <code>Sat Jan 1 00:00:00 2022</code></li>
+<li>输出：<code>Sat Jan 1 00:00:00 2022</code></li>
 </ul></li>
-<li>打印内容到命令行
+</ul></li>
+<li><p><strong>打印内容到命令行</strong></p>
 <ul>
-<li>命令： <code>echo [输出内容]</code><br>
+<li><strong>命令：</strong><code>echo [输出内容]</code><br>
 </li>
-<li>示例输入 1： <code>echo $HOME</code></li>
-<li>示例输出 1： <code>/c/Users/MeteorVanish</code></li>
-<li>示例输入 2： <code>echo Hello\ world!</code></li>
-<li>示例输出 2： <code>Hello world!</code></li>
+<li><strong>示例：</strong>
+<ul>
+<li>输入：<code>echo $HOME</code></li>
+<li>输出：<code>/c/Users/MeteorVanish</code></li>
+<li>输入：<code>echo Hello\ world!</code></li>
+<li>输出：<code>Hello world!</code> &gt; 注：若参数中若含有
+<code>' '</code>，需用 <code>'\ '</code> 代替或使用引号包裹</li>
+</ul></li>
+</ul></li>
+<li><p><strong>查看程序地址</strong></p>
+<ul>
+<li><strong>命令：</strong><code>which [程序名]</code></li>
+<li><strong>示例：</strong>
+<ul>
+<li>输入：<code>which echo</code></li>
+<li>输出：<code>/usr/bin/echo</code> &gt; 注：地址分隔符在
+<code>Linux</code> 和 <code>macOS</code> 下是 <code>/</code>，在
+<code>Windows</code> 下是 <code>\</code></li>
+</ul></li>
+</ul></li>
+<li><p><strong>查看当前工作目录</strong></p>
+<ul>
+<li><strong>命令：</strong><code>pwd</code> [<strong>p</strong>rint
+<strong>w</strong>orking <strong>d</strong>irectory]</li>
+<li><strong>示例：</strong>
+<ul>
+<li>输入：<code>pwd</code></li>
+<li>输出：<code>/c/Users/MeteorVanish</code></li>
+</ul></li>
+</ul></li>
+<li><p><strong>切换当前工作目录</strong></p>
+<ul>
+<li><strong>命令：</strong><code>cd [绝对/相对路径]</code>
+[<strong>c</strong>hange <strong>d</strong>irectory]
+<ul>
+<li>绝对路径：<code>cd /xxx</code></li>
+<li>相对路径：<code>.</code> 表示当前目录，<code>..</code>
+表示上级目录，<code>-</code> 表示之前所在目录</li>
+</ul></li>
+<li><strong>示例：</strong>
+<ul>
+<li>输入：<code>cd /home</code></li>
+<li>作用：切换到 <code>home</code></li>
+<li>输入：<code>cd ./bin</code></li>
+<li>作用：切换到 <code>home</code> 目录下的 <code>bin</code> 目录</li>
+<li>输入：cd <code>..</code></li>
+<li>作用：切换到上级目录</li>
+<li>输入：cd <code>-</code></li>
+<li>作用：切换到之前所在目录</li>
+</ul></li>
+</ul></li>
+<li><p><strong>查看当前工作目录下文件（夹）</strong></p>
+<ul>
+<li><strong>命令：</strong><code>ls [ 打印目录（默认当前工作目录）]</code>
+[<strong>l</strong>i<strong>s</strong>t]</li>
+<li><strong>示例：</strong>
+<ul>
+<li>输入：<code>ls</code> （当前在 <code>/</code> ）</li>
+<li>输出：<code>bin dev home ...</code></li>
+<li>输入：<code>ls sys</code> （当前在 <code>/</code> ）</li>
+<li>输出：<code>block  bus  class  dev  devices  firmware  fs  kernel  module  power</code></li>
+</ul></li>
+<li><code>list -l</code>
+<ul>
+<li>权限信息：共十位
+<ul>
+<li>第一位：<code>d</code> 代表文件夹， <code>l</code> 代表链接文件，
+<code>-</code> 代表普通文件</li>
+<li>第二至十位：三位一组，各组分别表示了文件所有者、用户组以及其他所有人的权限，每位依次为
+<code>r (read)</code>，<code>w (write)</code>，<code>x (execute)</code>，分别代表查看、修改、执行/搜索权限，不具备相应权限则对应位置为
+<code>-</code>
+<ul>
+<li>对文件夹而言，<code>r</code>
+权限表示是否能查看文件夹内包含哪些文件，<code>w</code>
+权限表示是否能重命名、增加、删除文件夹内文件，<code>x</code>
+权限表示是否能够进入文件夹</li>
+<li>想要访问一个文件需要具有其所有父文件夹的搜索权限</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p><strong>重命名或移动文件（夹）</strong></p>
+<ul>
+<li><strong>命令：</strong><code>mv [原文件（夹）名] [新文件（夹）名]</code>，<code>mv [原文件（夹）地址] [新文件（夹）地址]</code>
+(<strong>m</strong>o<strong>v</strong>e)</li>
+<li><strong>示例：</strong>
+<ul>
+<li>输入：<code>mv old.md new.md</code></li>
+<li>作用：将 <code>old.md</code> 重命名为 <code>new.md</code></li>
+<li>输入：<code>mv test.md ../dir2/test.md</code>（当前在
+<code>dir1</code> ）</li>
+<li>作用：将 <code>dir1</code> 中的 <code>test.md</code> 移动到
+<code>dir2</code> 中</li>
+</ul></li>
+</ul></li>
+<li><p><strong>拷贝文件（夹）</strong></p>
+<ul>
+<li><strong>命令：</strong><code>cp [原文件（夹）名] [新文件（夹）名]</code>
+[<strong>c</strong>o<strong>p</strong>y]</li>
+<li><strong>示例：</strong>
+<ul>
+<li>输入：<code>cp test.md ../dir2/test.md</code>（当前在
+<code>dir1</code> ）</li>
+<li>作用：将 <code>dir1</code> 中的 <code>test.md</code> 拷贝到
+<code>dir2</code> 中</li>
+</ul></li>
+</ul></li>
+<li><p><strong>删除文件（夹）</strong></p>
+<ul>
+<li><strong>命令：</strong><code>rm [文件名]</code>，<code>rm -r [文件夹名]</code>，<code>rmdir [文件夹名]</code>（仅当文件夹为空时有效）[<strong>r</strong>e<strong>m</strong>ove
+(<strong>dir</strong>ectory)]</li>
+<li><strong>示例：</strong>
+<ul>
+<li>输入：<code>rm test.md</code></li>
+<li>作用：删除文件 <code>test.md</code></li>
+<li>输入：<code>rm -r dir1</code></li>
+<li>作用：删除文件夹 <code>dir1</code> 及其中的所有文件</li>
+<li>输入：<code>rmdir dir2</code></li>
+<li>作用：删除空文件夹 <code>dir2</code></li>
+</ul></li>
+</ul></li>
+<li><p><strong>创建文件夹</strong></p>
+<ul>
+<li><strong>命令：</strong><code>mkdir [文件夹名]</code>
+[<strong>m</strong>a<strong>k</strong>e <strong>dir</strong>ectory]</li>
+<li><strong>示例：</strong>
+<ul>
+<li>输入：<code>mkdir dir2</code></li>
+<li>作用：在当前目录新建名为 <code>dir2</code> 的文件夹</li>
+</ul></li>
+</ul></li>
+<li><p><strong>查看指令用法</strong></p>
+<ul>
+<li><strong>命令：</strong><code>man [指令]</code>
+[<strong>man</strong>ual]，<code>[指令] --help</code></li>
+</ul></li>
 </ul>
-<blockquote>
-<p>注：若参数中若含有 <code>' '</code> ，需用 <code>'\ '</code>
-代替或使用引号包裹</p>
-</blockquote></li>
-<li>查看程序地址
+<h2 id="输入输出流">输入输出流</h2>
 <ul>
-<li>命令： <code>which [程序名]</code></li>
-<li>示例输入： <code>which echo</code></li>
-<li>示例输出： <code>/usr/bin/echo</code></li>
+<li><strong>输入输出流重定向</strong>
+<ul>
+<li><strong>命令：</strong><code>&lt; file</code>，<code>&gt; file</code>
+（覆盖rewrite），<code>&gt;&gt; file</code> (追加append)</li>
+<li><strong>示例：</strong>
+<ul>
+<li>输入：<code>echo hello &gt; hello.txt</code></li>
+<li>作用：在 <code>hello.txt</code> 文件（不存在就新建）中写入
+<code>hello</code></li>
+</ul></li>
+</ul></li>
+<li><strong>显示文件内容</strong>
+<ul>
+<li><strong>命令：</strong><code>cat [文件名]</code>
+[con<strong>cat</strong>enate]</li>
+<li><strong>示例：</strong>
+<ul>
+<li>输入：<code>cat hello.txt</code></li>
+<li>输出：<code>hello</code></li>
+<li>输入：<code>cat &lt; hello.txt</code></li>
+<li>输出：<code>hello</code></li>
+<li>输入：<code>cat &lt; hello.txt &gt; hello2.txt</code></li>
+<li>作用：在 <code>hello2.txt</code> 中写入 <code>hello.txt</code>
+的内容（在 <code>hello2.txt</code> 不存在时作用与 <code>cp</code>
+相同）</li>
+</ul></li>
+</ul></li>
 </ul>
-<blockquote>
-<p>注：地址分隔符在 <code>Linux</code> 和 <code>macOS</code> 下是
-<code>/</code> ，在 <code>Windows</code> 下是 <code>\</code></p>
-</blockquote></li>
-<li>查看当前工作目录
+<h2 id="杂项">杂项</h2>
 <ul>
-<li>命令： <code>pwd</code> (<strong>p</strong>rint
-<strong>w</strong>orking <strong>d</strong>irectory)</li>
-<li>示例输入： <code>pwd</code></li>
-<li>示例输出： <code>/c/Users/MeteorVanish</code></li>
-</ul></li>
-<li>切换当前工作目录
-<ul>
-<li>命令： <code>cd [绝对/相对路径]</code> (<strong>c</strong>hange
-<strong>d</strong>irectory)
-<ul>
-<li>绝对路径： <code>cd /xxx</code></li>
-<li>相对路径： <code>.</code> 表示当前目录， <code>..</code>
-表示上级目录</li>
-</ul></li>
-<li>示例输入 1： <code>cd /home</code></li>
-<li>示例输出 1：（切换到 <code>home</code> ）</li>
-<li>示例输入 2： <code>cd ./bin</code></li>
-<li>示例输出 2：（切换到 <code>home</code> 目录下的 <code>bin</code>
-目录）</li>
-<li>示例输入 3： <code>cd ..</code></li>
-<li>示例输出 3：（切换到上级目录）</li>
-</ul></li>
+<li><strong>清空命令行快捷键：</strong><code>Ctrl + L</code></li>
 </ul>
 
     </div>
@@ -420,7 +550,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#class-1-the-shell"><span class="nav-number">1.</span> <span class="nav-text">Class 1: the shell</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#shell-%E6%8C%87%E4%BB%A4"><span class="nav-number">1.1.</span> <span class="nav-text">shell 指令</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#class-1-the-shell"><span class="nav-number">1.</span> <span class="nav-text">Class 1: the shell</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#shell-%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4"><span class="nav-number">1.1.</span> <span class="nav-text">shell 基础指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%B5%81"><span class="nav-number">1.2.</span> <span class="nav-text">输入输出流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%82%E9%A1%B9"><span class="nav-number">1.3.</span> <span class="nav-text">杂项</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -483,13 +613,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">81k</span>
+    <span title="站点总字数">83k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:13</span>
+    <span title="站点阅读时长">1:15</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>

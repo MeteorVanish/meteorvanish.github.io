@@ -364,7 +364,156 @@ Simulator的README，具体代码见<a href="https://github.com/MeteorVanish/RIS
 </ul></li>
 </ul></li>
 </ul>
-<h3 id="预测准确率混合分支预测">预测准确率（混合分支预测）</h3>
+<h3 id="预测准确率">预测准确率</h3>
+<ul>
+<li><strong>静态预测（始终跳转）</strong>（平均预测准确率：<code>55.29%</code>）</li>
+</ul>
+<table>
+<colgroup>
+<col style="width: 27%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>测试点</strong></th>
+<th style="text-align: center;"><strong>时钟周期数</strong></th>
+<th style="text-align: center;"><strong>预测准确率</strong></th>
+<th style="text-align: center;"><strong>预测正确数</strong></th>
+<th style="text-align: center;"><strong>预测总数</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">array_test1</td>
+<td style="text-align: center;">311</td>
+<td style="text-align: center;">54.55%</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">22</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">array_test2</td>
+<td style="text-align: center;">367</td>
+<td style="text-align: center;">50.00%</td>
+<td style="text-align: center;">13</td>
+<td style="text-align: center;">26</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">basicopt1</td>
+<td style="text-align: center;">798333</td>
+<td style="text-align: center;">58.98%</td>
+<td style="text-align: center;">91497</td>
+<td style="text-align: center;">155139</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">bulgarian</td>
+<td style="text-align: center;">733162</td>
+<td style="text-align: center;">50.64%</td>
+<td style="text-align: center;">36204</td>
+<td style="text-align: center;">71493</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">expr</td>
+<td style="text-align: center;">716</td>
+<td style="text-align: center;">37.84%</td>
+<td style="text-align: center;">42</td>
+<td style="text-align: center;">111</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">gcd</td>
+<td style="text-align: center;">695</td>
+<td style="text-align: center;">62.50%</td>
+<td style="text-align: center;">75</td>
+<td style="text-align: center;">120</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">hanoi</td>
+<td style="text-align: center;">372674</td>
+<td style="text-align: center;">49.98%</td>
+<td style="text-align: center;">8725</td>
+<td style="text-align: center;">17457</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">lvalue2</td>
+<td style="text-align: center;">74</td>
+<td style="text-align: center;">66.67%</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">magic</td>
+<td style="text-align: center;">1015604</td>
+<td style="text-align: center;">53.14%</td>
+<td style="text-align: center;">36068</td>
+<td style="text-align: center;">67869</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">manyarguments</td>
+<td style="text-align: center;">84</td>
+<td style="text-align: center;">80.00%</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">multiarray</td>
+<td style="text-align: center;">2893</td>
+<td style="text-align: center;">18.52%</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">162</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">naive</td>
+<td style="text-align: center;">42</td>
+<td style="text-align: center;">/</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">pi</td>
+<td style="text-align: center;">154175873</td>
+<td style="text-align: center;">42.27%</td>
+<td style="text-align: center;">16889646</td>
+<td style="text-align: center;">39956380</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">qsort</td>
+<td style="text-align: center;">2610408</td>
+<td style="text-align: center;">30.01%</td>
+<td style="text-align: center;">60027</td>
+<td style="text-align: center;">200045</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">queens</td>
+<td style="text-align: center;">1098170</td>
+<td style="text-align: center;">63.22%</td>
+<td style="text-align: center;">48754</td>
+<td style="text-align: center;">77116</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">statement_test</td>
+<td style="text-align: center;">1572</td>
+<td style="text-align: center;">59.41%</td>
+<td style="text-align: center;">120</td>
+<td style="text-align: center;">202</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">superloop</td>
+<td style="text-align: center;">642595</td>
+<td style="text-align: center;">87.29%</td>
+<td style="text-align: center;">379755</td>
+<td style="text-align: center;">435027</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">tak</td>
+<td style="text-align: center;">3152987</td>
+<td style="text-align: center;">75.00%</td>
+<td style="text-align: center;">45479</td>
+<td style="text-align: center;">60639</td>
+</tr>
+</tbody>
+</table>
 <ul>
 <li><strong>四位饱和计数器预测</strong>（平均预测准确率：<code>75.44%</code>）</li>
 </ul>
@@ -812,6 +961,155 @@ Simulator的README，具体代码见<a href="https://github.com/MeteorVanish/RIS
 </tr>
 </tbody>
 </table>
+<ul>
+<li><strong>横向对比</strong></li>
+</ul>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 22%">
+<col style="width: 19%">
+<col style="width: 19%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>测试点</strong></th>
+<th style="text-align: center;"><strong>静态预测（不跳转）</strong></th>
+<th style="text-align: center;"><strong>四位饱和计数器</strong></th>
+<th style="text-align: center;"><strong>二级自适应预测</strong></th>
+<th style="text-align: center;"><strong>混合预测</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">array_test1</td>
+<td style="text-align: center;"><strong><font color="#2aa4db">54.55%</font></strong></td>
+<td style="text-align: center;"><strong><font color="#2aa4db">54.55%</font></strong></td>
+<td style="text-align: center;"><strong><font color="#2aa4db">54.55%</font></strong></td>
+<td style="text-align: center;"><strong><font color="#2aa4db">54.55%</font></strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">array_test2</td>
+<td style="text-align: center;">50.00%</td>
+<td style="text-align: center;"><strong><font color="#2aa4db">57.69%</font></strong></td>
+<td style="text-align: center;">50.00%</td>
+<td style="text-align: center;"><strong><font color="#2aa4db">57.69%</font></strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">basicopt1</td>
+<td style="text-align: center;">58.98%</td>
+<td style="text-align: center;">82.98%</td>
+<td style="text-align: center;">99.33%</td>
+<td style="text-align: center;"><strong><font color="#2aa4db">99.36%</font></strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">bulgarian</td>
+<td style="text-align: center;">50.64%</td>
+<td style="text-align: center;">93.77%</td>
+<td style="text-align: center;">94.79%</td>
+<td style="text-align: center;"><strong><font color="#2aa4db">94.96%</font></strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">expr</td>
+<td style="text-align: center;">37.84%</td>
+<td style="text-align: center;"><strong><font color="#2aa4db">83.78%</font></strong></td>
+<td style="text-align: center;">63.06%</td>
+<td style="text-align: center;"><strong><font color="#2aa4db">83.78%</font></strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">gcd</td>
+<td style="text-align: center;">62.50%</td>
+<td style="text-align: center;"><strong><font color="#2aa4db">68.33%</font></strong></td>
+<td style="text-align: center;">61.67%</td>
+<td style="text-align: center;"><strong><font color="#2aa4db">68.33%</font></strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">hanoi</td>
+<td style="text-align: center;">49.98%</td>
+<td style="text-align: center;">73.35%</td>
+<td style="text-align: center;">98.30%</td>
+<td style="text-align: center;"><strong><font color="#2aa4db">98.32%</font></strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">lvalue2</td>
+<td style="text-align: center;"><strong><font color="#2aa4db">66.67%</font></strong></td>
+<td style="text-align: center;"><strong><font color="#2aa4db">66.67%</font></strong></td>
+<td style="text-align: center;"><strong><font color="#2aa4db">66.67%</font></strong></td>
+<td style="text-align: center;"><strong><font color="#2aa4db">66.67%</font></strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">magic</td>
+<td style="text-align: center;">53.14%</td>
+<td style="text-align: center;">81.00%</td>
+<td style="text-align: center;">86.37%</td>
+<td style="text-align: center;"><strong><font color="#2aa4db">86.43%</font></strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">manyarguments</td>
+<td style="text-align: center;"><strong><font color="#2aa4db">80.00%</font></strong></td>
+<td style="text-align: center;">60.00%</td>
+<td style="text-align: center;"><strong><font color="#2aa4db">80.00%</font></strong></td>
+<td style="text-align: center;"><strong><font color="#2aa4db">80.00%</font></strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">multiarray</td>
+<td style="text-align: center;">18.52%</td>
+<td style="text-align: center;"><strong><font color="#2aa4db">83.33%</font></strong></td>
+<td style="text-align: center;">42.59%</td>
+<td style="text-align: center;">78.40%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">naive</td>
+<td style="text-align: center;">/</td>
+<td style="text-align: center;">/</td>
+<td style="text-align: center;">/</td>
+<td style="text-align: center;">/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">pi</td>
+<td style="text-align: center;">42.27%</td>
+<td style="text-align: center;">83.64%</td>
+<td style="text-align: center;">83.80%</td>
+<td style="text-align: center;"><strong><font color="#2aa4db">83.80%</font></strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">qsort</td>
+<td style="text-align: center;">30.01%</td>
+<td style="text-align: center;">89.07%</td>
+<td style="text-align: center;">96.88%</td>
+<td style="text-align: center;"><strong><font color="#2aa4db">96.89%</font></strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">queens</td>
+<td style="text-align: center;">63.22%</td>
+<td style="text-align: center;">75.99%</td>
+<td style="text-align: center;">83.16%</td>
+<td style="text-align: center;"><strong><font color="#2aa4db">83.17%</font></strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">statement_test</td>
+<td style="text-align: center;">59.41%</td>
+<td style="text-align: center;"><strong><font color="#2aa4db">61.39%</font></strong></td>
+<td style="text-align: center;"><strong><font color="#2aa4db">61.39%</font></strong></td>
+<td style="text-align: center;">59.41%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">superloop</td>
+<td style="text-align: center;">87.29%</td>
+<td style="text-align: center;">92.28%</td>
+<td style="text-align: center;">99.21%</td>
+<td style="text-align: center;"><strong><font color="#2aa4db">99.22%</font></strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">tak</td>
+<td style="text-align: center;">75.00%</td>
+<td style="text-align: center;">74.68%</td>
+<td style="text-align: center;">84.94%</td>
+<td style="text-align: center;"><strong><font color="#2aa4db">84.94%</font></strong></td>
+</tr>
+</tbody>
+</table>
 ]]></content>
       <categories>
         <category>CS学习之路</category>
@@ -859,6 +1157,205 @@ Simulator的README，具体代码见<a href="https://github.com/MeteorVanish/RIS
       </categories>
   </entry>
   <entry>
+    <title>missing-semester 学习笔记</title>
+    <url>/2022/06/20/missing-semester-notes/</url>
+    <content><![CDATA[<p>    本文是MIT课程missing-semester的学习笔记，这是一门介绍计算机工具的课，课时比较短，约为11小时，但涵盖的内容比较丰富。</p>
+<span id="more"></span>
+<h1 id="class-1-the-shell">Class 1: the shell</h1>
+<h2 id="shell-基础指令"><code>shell</code> 基础指令</h2>
+<ul>
+<li><p><strong>显示当前时间</strong></p>
+<ul>
+<li><strong>命令：</strong><code>date</code><br>
+</li>
+<li><strong>示例：</strong>
+<ul>
+<li>输入：<code>date</code><br>
+</li>
+<li>输出：<code>Sat Jan 1 00:00:00 2022</code></li>
+</ul></li>
+</ul></li>
+<li><p><strong>打印内容到命令行</strong></p>
+<ul>
+<li><strong>命令：</strong><code>echo [输出内容]</code><br>
+</li>
+<li><strong>示例：</strong>
+<ul>
+<li>输入：<code>echo $HOME</code></li>
+<li>输出：<code>/c/Users/MeteorVanish</code></li>
+<li>输入：<code>echo Hello\ world!</code></li>
+<li>输出：<code>Hello world!</code> &gt; 注：若参数中若含有
+<code>' '</code>，需用 <code>'\ '</code> 代替或使用引号包裹</li>
+</ul></li>
+</ul></li>
+<li><p><strong>查看程序地址</strong></p>
+<ul>
+<li><strong>命令：</strong><code>which [程序名]</code></li>
+<li><strong>示例：</strong>
+<ul>
+<li>输入：<code>which echo</code></li>
+<li>输出：<code>/usr/bin/echo</code> &gt; 注：地址分隔符在
+<code>Linux</code> 和 <code>macOS</code> 下是 <code>/</code>，在
+<code>Windows</code> 下是 <code>\</code></li>
+</ul></li>
+</ul></li>
+<li><p><strong>查看当前工作目录</strong></p>
+<ul>
+<li><strong>命令：</strong><code>pwd</code> [<strong>p</strong>rint
+<strong>w</strong>orking <strong>d</strong>irectory]</li>
+<li><strong>示例：</strong>
+<ul>
+<li>输入：<code>pwd</code></li>
+<li>输出：<code>/c/Users/MeteorVanish</code></li>
+</ul></li>
+</ul></li>
+<li><p><strong>切换当前工作目录</strong></p>
+<ul>
+<li><strong>命令：</strong><code>cd [绝对/相对路径]</code>
+[<strong>c</strong>hange <strong>d</strong>irectory]
+<ul>
+<li>绝对路径：<code>cd /xxx</code></li>
+<li>相对路径：<code>.</code> 表示当前目录，<code>..</code>
+表示上级目录，<code>-</code> 表示之前所在目录</li>
+</ul></li>
+<li><strong>示例：</strong>
+<ul>
+<li>输入：<code>cd /home</code></li>
+<li>作用：切换到 <code>home</code></li>
+<li>输入：<code>cd ./bin</code></li>
+<li>作用：切换到 <code>home</code> 目录下的 <code>bin</code> 目录</li>
+<li>输入：cd <code>..</code></li>
+<li>作用：切换到上级目录</li>
+<li>输入：cd <code>-</code></li>
+<li>作用：切换到之前所在目录</li>
+</ul></li>
+</ul></li>
+<li><p><strong>查看当前工作目录下文件（夹）</strong></p>
+<ul>
+<li><strong>命令：</strong><code>ls [ 打印目录（默认当前工作目录）]</code>
+[<strong>l</strong>i<strong>s</strong>t]</li>
+<li><strong>示例：</strong>
+<ul>
+<li>输入：<code>ls</code> （当前在 <code>/</code> ）</li>
+<li>输出：<code>bin dev home ...</code></li>
+<li>输入：<code>ls sys</code> （当前在 <code>/</code> ）</li>
+<li>输出：<code>block  bus  class  dev  devices  firmware  fs  kernel  module  power</code></li>
+</ul></li>
+<li><code>list -l</code>
+<ul>
+<li>权限信息：共十位
+<ul>
+<li>第一位：<code>d</code> 代表文件夹， <code>l</code> 代表链接文件，
+<code>-</code> 代表普通文件</li>
+<li>第二至十位：三位一组，各组分别表示了文件所有者、用户组以及其他所有人的权限，每位依次为
+<code>r (read)</code>，<code>w (write)</code>，<code>x (execute)</code>，分别代表查看、修改、执行/搜索权限，不具备相应权限则对应位置为
+<code>-</code>
+<ul>
+<li>对文件夹而言，<code>r</code>
+权限表示是否能查看文件夹内包含哪些文件，<code>w</code>
+权限表示是否能重命名、增加、删除文件夹内文件，<code>x</code>
+权限表示是否能够进入文件夹</li>
+<li>想要访问一个文件需要具有其所有父文件夹的搜索权限</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p><strong>重命名或移动文件（夹）</strong></p>
+<ul>
+<li><strong>命令：</strong><code>mv [原文件（夹）名] [新文件（夹）名]</code>，<code>mv [原文件（夹）地址] [新文件（夹）地址]</code>
+(<strong>m</strong>o<strong>v</strong>e)</li>
+<li><strong>示例：</strong>
+<ul>
+<li>输入：<code>mv old.md new.md</code></li>
+<li>作用：将 <code>old.md</code> 重命名为 <code>new.md</code></li>
+<li>输入：<code>mv test.md ../dir2/test.md</code>（当前在
+<code>dir1</code> ）</li>
+<li>作用：将 <code>dir1</code> 中的 <code>test.md</code> 移动到
+<code>dir2</code> 中</li>
+</ul></li>
+</ul></li>
+<li><p><strong>拷贝文件（夹）</strong></p>
+<ul>
+<li><strong>命令：</strong><code>cp [原文件（夹）名] [新文件（夹）名]</code>
+[<strong>c</strong>o<strong>p</strong>y]</li>
+<li><strong>示例：</strong>
+<ul>
+<li>输入：<code>cp test.md ../dir2/test.md</code>（当前在
+<code>dir1</code> ）</li>
+<li>作用：将 <code>dir1</code> 中的 <code>test.md</code> 拷贝到
+<code>dir2</code> 中</li>
+</ul></li>
+</ul></li>
+<li><p><strong>删除文件（夹）</strong></p>
+<ul>
+<li><strong>命令：</strong><code>rm [文件名]</code>，<code>rm -r [文件夹名]</code>，<code>rmdir [文件夹名]</code>（仅当文件夹为空时有效）[<strong>r</strong>e<strong>m</strong>ove
+(<strong>dir</strong>ectory)]</li>
+<li><strong>示例：</strong>
+<ul>
+<li>输入：<code>rm test.md</code></li>
+<li>作用：删除文件 <code>test.md</code></li>
+<li>输入：<code>rm -r dir1</code></li>
+<li>作用：删除文件夹 <code>dir1</code> 及其中的所有文件</li>
+<li>输入：<code>rmdir dir2</code></li>
+<li>作用：删除空文件夹 <code>dir2</code></li>
+</ul></li>
+</ul></li>
+<li><p><strong>创建文件夹</strong></p>
+<ul>
+<li><strong>命令：</strong><code>mkdir [文件夹名]</code>
+[<strong>m</strong>a<strong>k</strong>e <strong>dir</strong>ectory]</li>
+<li><strong>示例：</strong>
+<ul>
+<li>输入：<code>mkdir dir2</code></li>
+<li>作用：在当前目录新建名为 <code>dir2</code> 的文件夹</li>
+</ul></li>
+</ul></li>
+<li><p><strong>查看指令用法</strong></p>
+<ul>
+<li><strong>命令：</strong><code>man [指令]</code>
+[<strong>man</strong>ual]，<code>[指令] --help</code></li>
+</ul></li>
+</ul>
+<h2 id="输入输出流">输入输出流</h2>
+<ul>
+<li><strong>输入输出流重定向</strong>
+<ul>
+<li><strong>命令：</strong><code>&lt; file</code>，<code>&gt; file</code>
+（覆盖rewrite），<code>&gt;&gt; file</code> (追加append)</li>
+<li><strong>示例：</strong>
+<ul>
+<li>输入：<code>echo hello &gt; hello.txt</code></li>
+<li>作用：在 <code>hello.txt</code> 文件（不存在就新建）中写入
+<code>hello</code></li>
+</ul></li>
+</ul></li>
+<li><strong>显示文件内容</strong>
+<ul>
+<li><strong>命令：</strong><code>cat [文件名]</code>
+[con<strong>cat</strong>enate]</li>
+<li><strong>示例：</strong>
+<ul>
+<li>输入：<code>cat hello.txt</code></li>
+<li>输出：<code>hello</code></li>
+<li>输入：<code>cat &lt; hello.txt</code></li>
+<li>输出：<code>hello</code></li>
+<li>输入：<code>cat &lt; hello.txt &gt; hello2.txt</code></li>
+<li>作用：在 <code>hello2.txt</code> 中写入 <code>hello.txt</code>
+的内容（在 <code>hello2.txt</code> 不存在时作用与 <code>cp</code>
+相同）</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="杂项">杂项</h2>
+<ul>
+<li><strong>清空命令行快捷键：</strong><code>Ctrl + L</code></li>
+</ul>
+]]></content>
+      <categories>
+        <category>CS学习之路</category>
+      </categories>
+  </entry>
+  <entry>
     <title>STLite</title>
     <url>/2022/05/04/STLite/</url>
     <content><![CDATA[<p>    本文是《数据结构（荣誉）》课程大作业的代码存档，内容是模拟实现了STL中部分数据结构以及一些拓展数据结构的功能。</p>
@@ -884,75 +1381,6 @@ Simulator的README，具体代码见<a href="https://github.com/MeteorVanish/RIS
 <h1 id="课程感想">课程感想</h1>
 <p>  虽然在选这门课之前就已经听说了这个班级要求很高，于是提前做好了迎接挑战心理准备，但实际学习过程中还是压力满满，加之遇上疫情变成了线上课，更是不一样的体验，3学分的课至少花费了十几学分的精力。不过回想起来虽然一直被虐，但是真的收获满满，不论是平时作业和机考让我这个没怎么学过OI的蒟蒻学到了很多以前只听过名字的算法，还是这篇博文的大作业让我初步认识到什么叫面向对象，毕竟在这门课之前，迭代器对我而言还是一个非常陌生的概念。</p>
 <p>  在这门课里，我不仅学到了很多数据结构的知识，还增加了我对CS的热爱，有了许多全新的体验：第一次从惊叹题目的复杂到慢慢实现正确的算法，第一次在一无所有的框架中写了超过千行的代码，第一次体会到debug一整天都毫无收获的烦躁，第一次收获写出大作业的成就感……在对着电脑屏幕苦苦挣扎若干小时后，屏幕上跳出的AC真的是最好的慰藉，那一刻的喜悦之情真的胜过千言。总之，感谢yyu老师的悉心教导，感谢各位助教出题、讲解、答疑！</p>
-]]></content>
-      <categories>
-        <category>CS学习之路</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>missing-semester 学习笔记</title>
-    <url>/2022/06/20/missing-semester-notes/</url>
-    <content><![CDATA[<p>    本文是MIT课程missing-semester的学习笔记，这是一门介绍计算机工具的课，课时比较短，约为11小时，但涵盖的内容比较丰富。</p>
-<span id="more"></span>
-<h1 id="class-1-the-shell">Class 1: the shell</h1>
-<h2 id="shell-指令"><code>shell</code> 指令</h2>
-<ul>
-<li>显示当前时间
-<ul>
-<li>命令： <code>date</code><br>
-</li>
-<li>示例输入： <code>date</code><br>
-</li>
-<li>示例输出： <code>Sat Jan 1 00:00:00 2022</code></li>
-</ul></li>
-<li>打印内容到命令行
-<ul>
-<li>命令： <code>echo [输出内容]</code><br>
-</li>
-<li>示例输入 1： <code>echo $HOME</code></li>
-<li>示例输出 1： <code>/c/Users/MeteorVanish</code></li>
-<li>示例输入 2： <code>echo Hello\ world!</code></li>
-<li>示例输出 2： <code>Hello world!</code></li>
-</ul>
-<blockquote>
-<p>注：若参数中若含有 <code>' '</code> ，需用 <code>'\ '</code>
-代替或使用引号包裹</p>
-</blockquote></li>
-<li>查看程序地址
-<ul>
-<li>命令： <code>which [程序名]</code></li>
-<li>示例输入： <code>which echo</code></li>
-<li>示例输出： <code>/usr/bin/echo</code></li>
-</ul>
-<blockquote>
-<p>注：地址分隔符在 <code>Linux</code> 和 <code>macOS</code> 下是
-<code>/</code> ，在 <code>Windows</code> 下是 <code>\</code></p>
-</blockquote></li>
-<li>查看当前工作目录
-<ul>
-<li>命令： <code>pwd</code> (<strong>p</strong>rint
-<strong>w</strong>orking <strong>d</strong>irectory)</li>
-<li>示例输入： <code>pwd</code></li>
-<li>示例输出： <code>/c/Users/MeteorVanish</code></li>
-</ul></li>
-<li>切换当前工作目录
-<ul>
-<li>命令： <code>cd [绝对/相对路径]</code> (<strong>c</strong>hange
-<strong>d</strong>irectory)
-<ul>
-<li>绝对路径： <code>cd /xxx</code></li>
-<li>相对路径： <code>.</code> 表示当前目录， <code>..</code>
-表示上级目录</li>
-</ul></li>
-<li>示例输入 1： <code>cd /home</code></li>
-<li>示例输出 1：（切换到 <code>home</code> ）</li>
-<li>示例输入 2： <code>cd ./bin</code></li>
-<li>示例输出 2：（切换到 <code>home</code> 目录下的 <code>bin</code>
-目录）</li>
-<li>示例输入 3： <code>cd ..</code></li>
-<li>示例输出 3：（切换到上级目录）</li>
-</ul></li>
-</ul>
 ]]></content>
       <categories>
         <category>CS学习之路</category>
