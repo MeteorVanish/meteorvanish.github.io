@@ -29,7 +29,7 @@
 <meta property="og:description" content="本文是MIT课程missing-semester的学习笔记，这是一门介绍计算机工具的课，课时比较短，约为11小时，但涵盖的内容比较丰富。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-06-20T07:04:16.000Z">
-<meta property="article:modified_time" content="2022-07-03T07:27:59.466Z">
+<meta property="article:modified_time" content="2022-07-15T12:49:04.506Z">
 <meta property="article:author" content="MeteorVanish">
 <meta name="twitter:card" content="summary">
 
@@ -225,7 +225,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-03 15:27:59" itemprop="dateModified" datetime="2022-07-03T15:27:59+08:00">2022-07-03</time>
+                <time title="修改时间：2022-07-15 20:49:04" itemprop="dateModified" datetime="2022-07-15T20:49:04+08:00">2022-07-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -243,14 +243,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.8k</span>
+              <span>2.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -262,9 +262,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>    本文是MIT课程missing-semester的学习笔记，这是一门介绍计算机工具的课，课时比较短，约为11小时，但涵盖的内容比较丰富。</p>
+        <p>本文是MIT课程missing-semester的学习笔记，这是一门介绍计算机工具的课，课时比较短，约为11小时，但涵盖的内容比较丰富。</p>
 <span id="more"></span>
-<h1 id="class-1-the-shell">Class 1: the shell</h1>
+<h1 id="class-1-the-shell-教程地址">Class 1: The Shell (<a target="_blank" rel="noopener" href="https://missing.csail.mit.edu/2020/course-shell/">教程地址</a>)</h1>
 <h2 id="shell-基础指令"><code>shell</code> 基础指令</h2>
 <ul>
 <li><p><strong>显示当前时间</strong></p>
@@ -448,11 +448,70 @@
 相同）</li>
 </ul></li>
 </ul></li>
+<li><strong>连接运算符<code>|</code>(pipe)</strong>
+<ul>
+<li><strong>命令：</strong><code>[前一条命令] | [后一条命令]</code></li>
+<li><strong>功能：</strong>将前一条指令的输出作为后一条指令的输入</li>
+<li><strong>示例：</strong>
+<ul>
+<li>输入：<code>ls -l / | tail -n1</code></li>
+<li>输出：<code>drwxr-xr-x 1 MeteorVanish 197609       0 Jan 31 15:31 usr</code>
+（<code>ls -l /</code> 输出内容的最后一行）</li>
+</ul></li>
+</ul></li>
+<li><strong>将输入流重定向至输出流</strong>
+<ul>
+<li><strong>命令：</strong><code>[输入流] tee [输出流]</code></li>
+<li><strong>功能：</strong>在不进入 <code>root</code> 终端时使用
+<code>sudo</code> 指令修改内核变量的值</li>
+<li><strong>示例：</strong>
+<ul>
+<li>输入：<code>echo 500 | sudo tee brightness</code></li>
+<li>作用：将屏幕亮度更改为 <code>500</code> （等效于在 <code>root</code>
+终端下 <code>echo 500 &gt; brightness</code>）</li>
+</ul></li>
+</ul></li>
 </ul>
 <h2 id="杂项">杂项</h2>
 <ul>
-<li><strong>清空命令行快捷键：</strong><code>Ctrl + L</code></li>
+<li><p><strong>清空命令行快捷键：</strong><code>Ctrl + L</code></p></li>
+<li><p><strong>进入 <code>root</code>
+终端：</strong><code>sudo su</code> （需要输入密码）</p></li>
+<li><p><strong>退出 <code>root</code>
+终端：</strong><code>exit</code></p></li>
 </ul>
+<h2 id="练习">练习</h2>
+<p><strong>1. 查看 <code>shell</code> 是否满足要求</strong>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo $SHELL</span><br></pre></td></tr></table></figure></p>
+<p><strong>2. 在 <code>/tmp</code> 下新建一个名为 <code>missing</code>
+的文件夹</strong> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /tmp</span><br><span class="line">mkdir missing</span><br></pre></td></tr></table></figure></p>
+<p><strong>3. 用 <code>man</code> 查看程序 <code>touch</code>
+的使用手册</strong> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man touch</span><br></pre></td></tr></table></figure></p>
+<p><strong>4. 用 <code>touch</code> 在 <code>missing</code>
+文件夹中新建一个叫 <code>semester</code> 的文件</strong>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch semester</span><br></pre></td></tr></table></figure></p>
+<p><strong>5. 将以下内容一行一行地写入 <code>semester</code>
+文件：</strong></p>
+<blockquote>
+<p>#!/bin/sh<br>
+curl --head --silent https://missing.csail.mit.edu</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;#!/bin/sh&#x27; &gt; semester</span><br><span class="line">echo &#x27;curl --head --silent https://missing.csail.mit.edu&#x27; &gt;&gt; semester</span><br></pre></td></tr></table></figure>
+<p><strong>6. 尝试执行 <code>semester</code>
+文件，如果程序无法执行，请使用 <code>ls</code>
+命令来获取信息并理解其不能执行的原因</strong> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./semester</span><br><span class="line">ls -l</span><br></pre></td></tr></table></figure></p>
+<p><strong>7. 通过显式地打开 <code>sh</code> 解释器来运行命令，将文件
+<code>semester</code> 作为第一个参数</strong> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh semester</span><br></pre></td></tr></table></figure></p>
+<p><strong>8. 查看 <code>chmod</code> 的手册</strong> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man chmod</span><br></pre></td></tr></table></figure></p>
+<p><strong>9. 使用 <code>chmod</code> 命令改变权限，使
+<code>./semester</code> 能够成功执行</strong> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 semester</span><br><span class="line">./semester</span><br></pre></td></tr></table></figure></p>
+<p><strong>10. 使用 <code>|</code> 和 <code>&gt;</code> ，将
+<code>semester</code> 文件输出的最后更改日期信息，写入主目录下的
+<code>last-modified.txt</code> 的文件中</strong> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./semester | grep last-modified &gt; ~/last-modified.txt</span><br></pre></td></tr></table></figure></p>
+<p><strong>11. 写一段命令来从 <code>/sys</code>
+中获取笔记本的电量信息</strong> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /sys/class/power_supply/battery</span><br><span class="line">cat capacity</span><br></pre></td></tr></table></figure></p>
+<h1 id="class-2-shell-tools-and-scripting-教程地址">Class 2: Shell Tools
+and Scripting (<a target="_blank" rel="noopener" href="https://missing.csail.mit.edu/2020/shell-tools/">教程地址</a>)</h1>
 
     </div>
 
@@ -550,7 +609,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#class-1-the-shell"><span class="nav-number">1.</span> <span class="nav-text">Class 1: the shell</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#shell-%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4"><span class="nav-number">1.1.</span> <span class="nav-text">shell 基础指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%B5%81"><span class="nav-number">1.2.</span> <span class="nav-text">输入输出流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%82%E9%A1%B9"><span class="nav-number">1.3.</span> <span class="nav-text">杂项</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#class-1-the-shell-%E6%95%99%E7%A8%8B%E5%9C%B0%E5%9D%80"><span class="nav-number">1.</span> <span class="nav-text">Class 1: The Shell (教程地址)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#shell-%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4"><span class="nav-number">1.1.</span> <span class="nav-text">shell 基础指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%B5%81"><span class="nav-number">1.2.</span> <span class="nav-text">输入输出流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%82%E9%A1%B9"><span class="nav-number">1.3.</span> <span class="nav-text">杂项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0"><span class="nav-number">1.4.</span> <span class="nav-text">练习</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#class-2-shell-tools-and-scripting-%E6%95%99%E7%A8%8B%E5%9C%B0%E5%9D%80"><span class="nav-number">2.</span> <span class="nav-text">Class 2: Shell Tools
+and Scripting (教程地址)</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -566,7 +626,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -613,13 +673,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">83k</span>
+    <span title="站点总字数">85k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:15</span>
+    <span title="站点阅读时长">1:17</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
