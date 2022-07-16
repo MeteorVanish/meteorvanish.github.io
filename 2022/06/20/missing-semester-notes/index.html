@@ -29,7 +29,7 @@
 <meta property="og:description" content="本文是MIT课程missing-semester的学习笔记，这是一门介绍计算机工具的课，课时比较短，约为11小时，但涵盖的内容比较丰富。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-06-20T07:04:16.000Z">
-<meta property="article:modified_time" content="2022-07-15T12:49:04.506Z">
+<meta property="article:modified_time" content="2022-07-16T15:21:24.718Z">
 <meta property="article:author" content="MeteorVanish">
 <meta name="twitter:card" content="summary">
 
@@ -225,7 +225,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-15 20:49:04" itemprop="dateModified" datetime="2022-07-15T20:49:04+08:00">2022-07-15</time>
+                <time title="修改时间：2022-07-16 23:21:24" itemprop="dateModified" datetime="2022-07-16T23:21:24+08:00">2022-07-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -243,14 +243,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.9k</span>
+              <span>4.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -265,54 +265,34 @@
         <p>本文是MIT课程missing-semester的学习笔记，这是一门介绍计算机工具的课，课时比较短，约为11小时，但涵盖的内容比较丰富。</p>
 <span id="more"></span>
 <h1 id="class-1-the-shell-教程地址">Class 1: The Shell (<a target="_blank" rel="noopener" href="https://missing.csail.mit.edu/2020/course-shell/">教程地址</a>)</h1>
-<h2 id="shell-基础指令"><code>shell</code> 基础指令</h2>
-<ul>
-<li><p><strong>显示当前时间</strong></p>
+<h2 id="shell-基础指令">shell 基础指令</h2>
+<h3 id="显示当前时间">显示当前时间</h3>
 <ul>
 <li><strong>命令：</strong><code>date</code><br>
 </li>
-<li><strong>示例：</strong>
-<ul>
-<li>输入：<code>date</code><br>
-</li>
-<li>输出：<code>Sat Jan 1 00:00:00 2022</code></li>
-</ul></li>
-</ul></li>
-<li><p><strong>打印内容到命令行</strong></p>
+<li><strong>示例：</strong> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">date</span>   <span class="comment"># Sat Jan 1 00:00:00 2022</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="打印内容到命令行">打印内容到命令行</h3>
 <ul>
 <li><strong>命令：</strong><code>echo [输出内容]</code><br>
 </li>
-<li><strong>示例：</strong>
-<ul>
-<li>输入：<code>echo $HOME</code></li>
-<li>输出：<code>/c/Users/MeteorVanish</code></li>
-<li>输入：<code>echo Hello\ world!</code></li>
-<li>输出：<code>Hello world!</code> &gt; 注：若参数中若含有
+<li><strong>示例：</strong> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$HOME</span>   <span class="comment"># /c/Users/MeteorVanish</span></span><br><span class="line"><span class="built_in">echo</span> Hello\ world!   <span class="comment"># Hello world!</span></span><br></pre></td></tr></table></figure> &gt; 注：若参数中若含有
 <code>' '</code>，需用 <code>'\ '</code> 代替或使用引号包裹</li>
-</ul></li>
-</ul></li>
-<li><p><strong>查看程序地址</strong></p>
+</ul>
+<h3 id="查看程序地址">查看程序地址</h3>
 <ul>
 <li><strong>命令：</strong><code>which [程序名]</code></li>
-<li><strong>示例：</strong>
-<ul>
-<li>输入：<code>which echo</code></li>
-<li>输出：<code>/usr/bin/echo</code> &gt; 注：地址分隔符在
+<li><strong>示例：</strong> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">which</span> <span class="built_in">echo</span>   <span class="comment"># /usr/bin/echo</span></span><br></pre></td></tr></table></figure> &gt; 注：地址分隔符在
 <code>Linux</code> 和 <code>macOS</code> 下是 <code>/</code>，在
 <code>Windows</code> 下是 <code>\</code></li>
-</ul></li>
-</ul></li>
-<li><p><strong>查看当前工作目录</strong></p>
+</ul>
+<h3 id="查看当前工作目录">查看当前工作目录</h3>
 <ul>
 <li><strong>命令：</strong><code>pwd</code> [<strong>p</strong>rint
 <strong>w</strong>orking <strong>d</strong>irectory]</li>
-<li><strong>示例：</strong>
-<ul>
-<li>输入：<code>pwd</code></li>
-<li>输出：<code>/c/Users/MeteorVanish</code></li>
-</ul></li>
-</ul></li>
-<li><p><strong>切换当前工作目录</strong></p>
+<li><strong>示例：</strong> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pwd</span>   <span class="comment"># /c/Users/MeteorVanish</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="切换当前工作目录">切换当前工作目录</h3>
 <ul>
 <li><strong>命令：</strong><code>cd [绝对/相对路径]</code>
 [<strong>c</strong>hange <strong>d</strong>irectory]
@@ -321,30 +301,14 @@
 <li>相对路径：<code>.</code> 表示当前目录，<code>..</code>
 表示上级目录，<code>-</code> 表示之前所在目录</li>
 </ul></li>
-<li><strong>示例：</strong>
+<li><strong>示例：</strong> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home   <span class="comment"># 切换到 home</span></span><br><span class="line"><span class="built_in">cd</span> ./bin   <span class="comment"># 切换到 home 目录下的 bin 目录</span></span><br><span class="line"><span class="built_in">cd</span> ..   <span class="comment"># 切换到上级目录</span></span><br><span class="line"><span class="built_in">cd</span> -   <span class="comment"># 切换到之前所在目录</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="查看当前工作目录下文件夹">查看当前工作目录下文件（夹）</h3>
 <ul>
-<li>输入：<code>cd /home</code></li>
-<li>作用：切换到 <code>home</code></li>
-<li>输入：<code>cd ./bin</code></li>
-<li>作用：切换到 <code>home</code> 目录下的 <code>bin</code> 目录</li>
-<li>输入：cd <code>..</code></li>
-<li>作用：切换到上级目录</li>
-<li>输入：cd <code>-</code></li>
-<li>作用：切换到之前所在目录</li>
-</ul></li>
-</ul></li>
-<li><p><strong>查看当前工作目录下文件（夹）</strong></p>
-<ul>
-<li><strong>命令：</strong><code>ls [ 打印目录（默认当前工作目录）]</code>
-[<strong>l</strong>i<strong>s</strong>t]</li>
-<li><strong>示例：</strong>
-<ul>
-<li>输入：<code>ls</code> （当前在 <code>/</code> ）</li>
-<li>输出：<code>bin dev home ...</code></li>
-<li>输入：<code>ls sys</code> （当前在 <code>/</code> ）</li>
-<li>输出：<code>block  bus  class  dev  devices  firmware  fs  kernel  module  power</code></li>
-</ul></li>
-<li><code>list -l</code>
+<li><p><strong>命令：</strong><code>ls [ 打印目录（默认当前工作目录）]</code>
+[<strong>l</strong>i<strong>s</strong>t]</p></li>
+<li><p><strong>示例：</strong> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#（当前在 /）</span></span><br><span class="line"><span class="built_in">ls</span>   <span class="comment"># bin dev home ...</span></span><br><span class="line"><span class="built_in">ls</span> sys   <span class="comment"># block  bus  class  dev  devices  firmware  fs  kernel  module  power</span></span><br></pre></td></tr></table></figure></p></li>
+<li><p><code>ls -l</code></p>
 <ul>
 <li>权限信息：共十位
 <ul>
@@ -362,156 +326,196 @@
 </ul></li>
 </ul></li>
 </ul></li>
-</ul></li>
-<li><p><strong>重命名或移动文件（夹）</strong></p>
+</ul>
+<h3 id="重命名或移动文件夹">重命名或移动文件（夹）</h3>
 <ul>
 <li><strong>命令：</strong><code>mv [原文件（夹）名] [新文件（夹）名]</code>，<code>mv [原文件（夹）地址] [新文件（夹）地址]</code>
 (<strong>m</strong>o<strong>v</strong>e)</li>
-<li><strong>示例：</strong>
-<ul>
-<li>输入：<code>mv old.md new.md</code></li>
-<li>作用：将 <code>old.md</code> 重命名为 <code>new.md</code></li>
-<li>输入：<code>mv test.md ../dir2/test.md</code>（当前在
-<code>dir1</code> ）</li>
-<li>作用：将 <code>dir1</code> 中的 <code>test.md</code> 移动到
-<code>dir2</code> 中</li>
-</ul></li>
-</ul></li>
-<li><p><strong>拷贝文件（夹）</strong></p>
+<li><strong>示例：</strong> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mv</span> old.md new.md   <span class="comment"># 将 old.md 重命名为 new.md</span></span><br><span class="line"><span class="built_in">mv</span> test.md ../dir2/test.md   <span class="comment">#（当前在 dir1 ）将 dir1 中的 test.md 移动到 dir2 中</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="拷贝文件夹">拷贝文件（夹）</h3>
 <ul>
 <li><strong>命令：</strong><code>cp [原文件（夹）名] [新文件（夹）名]</code>
 [<strong>c</strong>o<strong>p</strong>y]</li>
-<li><strong>示例：</strong>
-<ul>
-<li>输入：<code>cp test.md ../dir2/test.md</code>（当前在
-<code>dir1</code> ）</li>
-<li>作用：将 <code>dir1</code> 中的 <code>test.md</code> 拷贝到
-<code>dir2</code> 中</li>
-</ul></li>
-</ul></li>
-<li><p><strong>删除文件（夹）</strong></p>
+<li><strong>示例：</strong> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> test.md ../dir2/test.md   <span class="comment">#（当前在 dir1 ）将 dir1 中的 test.md 拷贝到 dir2 中</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="删除文件夹">删除文件（夹）</h3>
 <ul>
 <li><strong>命令：</strong><code>rm [文件名]</code>，<code>rm -r [文件夹名]</code>，<code>rmdir [文件夹名]</code>（仅当文件夹为空时有效）[<strong>r</strong>e<strong>m</strong>ove
 (<strong>dir</strong>ectory)]</li>
-<li><strong>示例：</strong>
-<ul>
-<li>输入：<code>rm test.md</code></li>
-<li>作用：删除文件 <code>test.md</code></li>
-<li>输入：<code>rm -r dir1</code></li>
-<li>作用：删除文件夹 <code>dir1</code> 及其中的所有文件</li>
-<li>输入：<code>rmdir dir2</code></li>
-<li>作用：删除空文件夹 <code>dir2</code></li>
-</ul></li>
-</ul></li>
-<li><p><strong>创建文件夹</strong></p>
+<li><strong>示例：</strong> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rm</span> test.md   <span class="comment"># 删除文件 test.md</span></span><br><span class="line"><span class="built_in">rm</span> -r dir1   <span class="comment"># 删除文件夹 dir1 及其中的所有文件</span></span><br><span class="line"><span class="built_in">rmdir</span> dir2   <span class="comment"># 删除空文件夹 dir2</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="创建文件夹">创建文件夹</h3>
 <ul>
 <li><strong>命令：</strong><code>mkdir [文件夹名]</code>
 [<strong>m</strong>a<strong>k</strong>e <strong>dir</strong>ectory]</li>
-<li><strong>示例：</strong>
-<ul>
-<li>输入：<code>mkdir dir2</code></li>
-<li>作用：在当前目录新建名为 <code>dir2</code> 的文件夹</li>
-</ul></li>
-</ul></li>
-<li><p><strong>查看指令用法</strong></p>
+<li><strong>示例：</strong> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> dir2   <span class="comment"># 在当前目录新建名为 dir2 的文件夹</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="查看指令用法">查看指令用法</h3>
 <ul>
 <li><strong>命令：</strong><code>man [指令]</code>
 [<strong>man</strong>ual]，<code>[指令] --help</code></li>
-</ul></li>
 </ul>
 <h2 id="输入输出流">输入输出流</h2>
-<ul>
-<li><strong>输入输出流重定向</strong>
+<h3 id="输入输出流重定向">输入输出流重定向</h3>
 <ul>
 <li><strong>命令：</strong><code>&lt; file</code>，<code>&gt; file</code>
 （覆盖rewrite），<code>&gt;&gt; file</code> (追加append)</li>
-<li><strong>示例：</strong>
+<li><strong>示例：</strong> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> hello &gt; hello.txt   <span class="comment"># 在 hello.txt 文件（不存在就新建）中写入 &quot;hello&quot;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="显示文件内容">显示文件内容</h3>
 <ul>
-<li>输入：<code>echo hello &gt; hello.txt</code></li>
-<li>作用：在 <code>hello.txt</code> 文件（不存在就新建）中写入
-<code>hello</code></li>
-</ul></li>
-</ul></li>
-<li><strong>显示文件内容</strong>
-<ul>
-<li><strong>命令：</strong><code>cat [文件名]</code>
+<li><strong>命令：</strong><code>cat [文件名/输入流]</code>
 [con<strong>cat</strong>enate]</li>
-<li><strong>示例：</strong>
-<ul>
-<li>输入：<code>cat hello.txt</code></li>
-<li>输出：<code>hello</code></li>
-<li>输入：<code>cat &lt; hello.txt</code></li>
-<li>输出：<code>hello</code></li>
-<li>输入：<code>cat &lt; hello.txt &gt; hello2.txt</code></li>
-<li>作用：在 <code>hello2.txt</code> 中写入 <code>hello.txt</code>
-的内容（在 <code>hello2.txt</code> 不存在时作用与 <code>cp</code>
-相同）</li>
-</ul></li>
-</ul></li>
-<li><strong>连接运算符<code>|</code>(pipe)</strong>
+<li><strong>示例：</strong> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> hello.txt   <span class="comment"># hello</span></span><br><span class="line"><span class="built_in">cat</span> &lt; hello.txt   <span class="comment"># hello</span></span><br><span class="line"><span class="built_in">cat</span> &lt; hello.txt &gt; hello2.txt   <span class="comment"># 在 hello2.txt 中写入 hello.txt 的内容（在 hello2.txt 不存在时作用与 cp 相同）</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="连接运算符-pipe">连接运算符 <code>|</code> (pipe)</h3>
 <ul>
 <li><strong>命令：</strong><code>[前一条命令] | [后一条命令]</code></li>
 <li><strong>功能：</strong>将前一条指令的输出作为后一条指令的输入</li>
-<li><strong>示例：</strong>
-<ul>
-<li>输入：<code>ls -l / | tail -n1</code></li>
-<li>输出：<code>drwxr-xr-x 1 MeteorVanish 197609       0 Jan 31 15:31 usr</code>
-（<code>ls -l /</code> 输出内容的最后一行）</li>
-</ul></li>
-</ul></li>
-<li><strong>将输入流重定向至输出流</strong>
+<li><strong>示例：</strong> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -l / | <span class="built_in">tail</span> -n1   <span class="comment"># drwxr-xr-x 1 MeteorVanish 197609       0 Jan 31 15:31 usr（&quot;ls -l /&quot; 输出内容的最后一行）</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="将输入流重定向至输出流">将输入流重定向至输出流</h3>
 <ul>
 <li><strong>命令：</strong><code>[输入流] tee [输出流]</code></li>
 <li><strong>功能：</strong>在不进入 <code>root</code> 终端时使用
 <code>sudo</code> 指令修改内核变量的值</li>
-<li><strong>示例：</strong>
-<ul>
-<li>输入：<code>echo 500 | sudo tee brightness</code></li>
-<li>作用：将屏幕亮度更改为 <code>500</code> （等效于在 <code>root</code>
-终端下 <code>echo 500 &gt; brightness</code>）</li>
-</ul></li>
-</ul></li>
+<li><strong>示例：</strong> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> 500 | sudo <span class="built_in">tee</span> brightness   <span class="comment"># 将屏幕亮度更改为 500（等效于在 root 终端下 &quot;echo 500 &gt; brightness&quot;）</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 <h2 id="杂项">杂项</h2>
 <ul>
-<li><p><strong>清空命令行快捷键：</strong><code>Ctrl + L</code></p></li>
-<li><p><strong>进入 <code>root</code>
-终端：</strong><code>sudo su</code> （需要输入密码）</p></li>
-<li><p><strong>退出 <code>root</code>
-终端：</strong><code>exit</code></p></li>
+<li><strong>清空命令行快捷键：</strong><code>Ctrl + L</code></li>
+<li><strong>进入 <code>root</code> 终端：</strong><code>sudo su</code>
+（需要输入密码）</li>
+<li><strong>退出 <code>root</code> 终端：</strong><code>exit</code></li>
 </ul>
 <h2 id="练习">练习</h2>
 <p><strong>1. 查看 <code>shell</code> 是否满足要求</strong>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo $SHELL</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$SHELL</span></span><br></pre></td></tr></table></figure></p>
 <p><strong>2. 在 <code>/tmp</code> 下新建一个名为 <code>missing</code>
-的文件夹</strong> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /tmp</span><br><span class="line">mkdir missing</span><br></pre></td></tr></table></figure></p>
+的文件夹</strong> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /tmp</span><br><span class="line"><span class="built_in">mkdir</span> missing</span><br></pre></td></tr></table></figure></p>
 <p><strong>3. 用 <code>man</code> 查看程序 <code>touch</code>
-的使用手册</strong> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man touch</span><br></pre></td></tr></table></figure></p>
+的使用手册</strong> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man <span class="built_in">touch</span></span><br></pre></td></tr></table></figure></p>
 <p><strong>4. 用 <code>touch</code> 在 <code>missing</code>
 文件夹中新建一个叫 <code>semester</code> 的文件</strong>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch semester</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">touch</span> semester</span><br></pre></td></tr></table></figure></p>
 <p><strong>5. 将以下内容一行一行地写入 <code>semester</code>
 文件：</strong></p>
 <blockquote>
 <p>#!/bin/sh<br>
 curl --head --silent https://missing.csail.mit.edu</p>
 </blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;#!/bin/sh&#x27; &gt; semester</span><br><span class="line">echo &#x27;curl --head --silent https://missing.csail.mit.edu&#x27; &gt;&gt; semester</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;#!/bin/sh&#x27;</span> &gt; semester</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;curl --head --silent https://missing.csail.mit.edu&#x27;</span> &gt;&gt; semester</span><br></pre></td></tr></table></figure>
 <p><strong>6. 尝试执行 <code>semester</code>
 文件，如果程序无法执行，请使用 <code>ls</code>
-命令来获取信息并理解其不能执行的原因</strong> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./semester</span><br><span class="line">ls -l</span><br></pre></td></tr></table></figure></p>
+命令来获取信息并理解其不能执行的原因</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./semester</span><br><span class="line"><span class="built_in">ls</span> -l</span><br></pre></td></tr></table></figure>
 <p><strong>7. 通过显式地打开 <code>sh</code> 解释器来运行命令，将文件
-<code>semester</code> 作为第一个参数</strong> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh semester</span><br></pre></td></tr></table></figure></p>
-<p><strong>8. 查看 <code>chmod</code> 的手册</strong> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man chmod</span><br></pre></td></tr></table></figure></p>
+<code>semester</code> 作为第一个参数</strong> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh semester</span><br></pre></td></tr></table></figure></p>
+<p><strong>8. 查看 <code>chmod</code> 的手册</strong> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man <span class="built_in">chmod</span></span><br></pre></td></tr></table></figure></p>
 <p><strong>9. 使用 <code>chmod</code> 命令改变权限，使
-<code>./semester</code> 能够成功执行</strong> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 semester</span><br><span class="line">./semester</span><br></pre></td></tr></table></figure></p>
+<code>./semester</code> 能够成功执行</strong> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> 777 semester</span><br><span class="line">./semester</span><br></pre></td></tr></table></figure></p>
 <p><strong>10. 使用 <code>|</code> 和 <code>&gt;</code> ，将
 <code>semester</code> 文件输出的最后更改日期信息，写入主目录下的
-<code>last-modified.txt</code> 的文件中</strong> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./semester | grep last-modified &gt; ~/last-modified.txt</span><br></pre></td></tr></table></figure></p>
+<code>last-modified.txt</code> 的文件中</strong> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./semester | grep last-modified &gt; ~/last-modified.txt</span><br></pre></td></tr></table></figure></p>
 <p><strong>11. 写一段命令来从 <code>/sys</code>
-中获取笔记本的电量信息</strong> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /sys/class/power_supply/battery</span><br><span class="line">cat capacity</span><br></pre></td></tr></table></figure></p>
+中获取笔记本的电量信息</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /sys/class/power_supply/battery</span><br><span class="line"><span class="built_in">cat</span> capacity</span><br></pre></td></tr></table></figure>
 <h1 id="class-2-shell-tools-and-scripting-教程地址">Class 2: Shell Tools
 and Scripting (<a target="_blank" rel="noopener" href="https://missing.csail.mit.edu/2020/shell-tools/">教程地址</a>)</h1>
+<h2 id="shell-脚本bash">Shell 脚本（bash）</h2>
+<h3 id="复制变量">复制变量</h3>
+<ul>
+<li><strong>示例：</strong> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foo=bar   <span class="comment">#（没有空格）</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="转义">转义</h3>
+<ul>
+<li>单引号 <code>'</code> 不会转义，双引号 <code>"</code> 会转义</li>
+<li><strong>示例：</strong> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;Value is $foo&#x27;</span>   <span class="comment"># Value is $foo</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Value is <span class="variable">$foo</span>&quot;</span>   <span class="comment"># Value is bar</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="bash-中的特殊变量"><code>bash</code> 中的特殊变量</h3>
+<ul>
+<li><code>$0</code>：脚本名</li>
+<li><code>$1</code> - <code>$9</code>：脚本的第一个至第九个参数</li>
+<li><code>$@</code>：所有参数</li>
+<li><code>$#</code>：参数个数</li>
+<li><code>$?</code>：前一个命令的返回值
+<ul>
+<li>返回值0表示正常执行，其他所有非0的返回值都表示有错误发生。</li>
+<li><code>true</code> 的返回码永远是 <code>0</code>，<code>false</code>
+的返回码永远是 <code>1</code></li>
+<li>返回值可以搭配 <code>&amp;&amp;</code>（与运算符）和
+<code>||</code>（或运算符）使用，均为<strong>短路运算符</strong>
+<ul>
+<li><strong>示例：</strong> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">false</span> || <span class="built_in">echo</span> <span class="string">&quot;false with ||&quot;</span>   <span class="comment"># false with ||</span></span><br><span class="line"><span class="literal">true</span> || <span class="built_in">echo</span> <span class="string">&quot;true with ||&quot;</span>   <span class="comment">#（无）</span></span><br><span class="line"><span class="literal">false</span> &amp;&amp; <span class="built_in">echo</span> <span class="string">&quot;false with &amp;&amp;&quot;</span>   <span class="comment">#（无）</span></span><br><span class="line"><span class="literal">true</span> &amp;&amp; <span class="built_in">echo</span> <span class="string">&quot;true with &amp;&amp;&quot;</span>   <span class="comment"># true with &amp;&amp;</span></span><br></pre></td></tr></table></figure></li>
+</ul></li>
+</ul></li>
+<li><code>$$</code>：当前脚本的进程识别码</li>
+<li><code>!!</code>：完整的上一条命令，包括参数。
+<ul>
+<li>常见应用：当你因为权限不足执行命令失败时，可以使用
+<code>sudo !!</code> 再尝试一次。</li>
+</ul></li>
+<li><code>$_</code>：上一条命令的最后一个参数
+<ul>
+<li>如果你正在使用的是交互式 shell，你可以通过按下 <code>Esc</code>
+之后键入 <code>.</code> 来获取这个值。</li>
+</ul></li>
+</ul>
+<h3 id="命令替换command-substitution">命令替换（command
+substitution）</h3>
+<ul>
+<li>通过 <code>$( CMD )</code> 这样的方式来执行 <code>CMD</code>
+这个命令时，它的输出结果会替换掉 <code>$( CMD )</code></li>
+<li><strong>示例：</strong> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;We are in <span class="subst">$(pwd)</span>&quot;</span>   <span class="comment"># We are in /home/meteorvanish</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="进程替换process-substitution">进程替换（process
+substitution）</h3>
+<ul>
+<li><code>&lt;( CMD )</code> 会执行 <code>CMD</code>
+并将结果输出到一个临时文件中，并将 <code>&lt;( CMD )</code>
+替换成临时文件名</li>
+<li><strong>示例：</strong> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &lt;(<span class="built_in">pwd</span>)   <span class="comment"># /home/meteorvanish</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="脚本示例">脚本示例</h3>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Starting program at <span class="subst">$(date)</span>&quot;</span> <span class="comment"># Date will be substituted</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Running program <span class="variable">$0</span> with <span class="variable">$#</span> arguments with pid $$&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$@</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">    grep foobar <span class="string">&quot;<span class="variable">$file</span>&quot;</span> &gt; /dev/null 2&gt; /dev/null</span><br><span class="line">    <span class="comment"># When pattern is not found, grep has exit status 1</span></span><br><span class="line">    <span class="comment"># We redirect STDOUT and STDERR to a null register since we do not care about them</span></span><br><span class="line">    <span class="keyword">if</span> [[ $? -ne 0 ]]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;File <span class="variable">$file</span> does not have any foobar, adding one&quot;</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;# foobar&quot;</span> &gt;&gt; <span class="string">&quot;<span class="variable">$file</span>&quot;</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>作用：</strong>搜索作为参数的文件内容，若不存在
+<code>foobar</code> 内容就在结尾加上一行 <code># foobar</code></li>
+<li><strong>注：</strong>
+<ul>
+<li>第7行 <code>&gt;</code> 为 stdout 输出流，<code>2&gt;</code> 为
+stderr 输出流</li>
+<li>第10行比较 <code>$?</code> 是否等于 <code>0</code> 是使用了
+<code>-ne</code> 指令，<code>bash</code> 中更多类似的比较指令可以通过
+<code>man test</code> 查看。</li>
+<li><em>在bash中进行比较时，尽量使用双方括号 <code>[[ ]]</code>
+而不是单方括号
+<code>[ ]</code>，这样会降低犯错的几率，尽管这样并不能兼容
+<code>sh</code>，更详细的说明参见<a target="_blank" rel="noopener" href="http://mywiki.wooledge.org/BashFAQ/031">这里</a>。</em>
+<strong><em>（暂未理解含义）</em></strong></li>
+</ul></li>
+</ul>
+<h3 id="通配globbing">通配（globbing）</h3>
+<ul>
+<li>通配符 <code>?</code> 匹配一个字符，<code>*</code> 匹配任意个字符
+<ul>
+<li><strong>示例：</strong>对于文件
+<code>foo</code>，<code>foo1</code>，<code>foo2</code>，<code>foo10</code>
+和 <code>bar</code>，<code>rm foo?</code> 这条命令会删除
+<code>foo1</code> 和 <code>foo2</code>，而 <code>rm foo*</code> 则会删除
+<code>bar</code> 之外的所有文件</li>
+</ul></li>
+<li>花括号 <code>&#123; &#125;</code>
+能够将一系列包含一段公共子串的指令进行自动展开，以便进行批量处理文件
+<ul>
+<li><strong>示例：</strong> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> project&#123;1,2&#125;   <span class="comment"># 创建文件夹 project1 和 project2</span></span><br><span class="line"><span class="built_in">touch</span> project&#123;1,2&#125;/test&#123;1..3&#125;   <span class="comment"># 在文件夹 project1 和 project2 下分别创建文件 test1，test2 和 test3</span></span><br><span class="line"><span class="built_in">touch</span> project1/x project2/y</span><br><span class="line">diff &lt;(<span class="built_in">ls</span> project1) &lt;(<span class="built_in">ls</span> project2)</span><br><span class="line"><span class="comment"># 4c4</span></span><br><span class="line"><span class="comment"># &lt; x</span></span><br><span class="line"><span class="comment"># ---</span></span><br><span class="line"><span class="comment"># &gt; y</span></span><br></pre></td></tr></table></figure></li>
+</ul></li>
+</ul>
+<h2 id="杂项-1">杂项</h2>
+<ul>
+<li>同一行的多个命令可以用 <code>;</code> 分隔</li>
+</ul>
 
     </div>
 
@@ -609,8 +613,10 @@ and Scripting (<a target="_blank" rel="noopener" href="https://missing.csail.mit
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#class-1-the-shell-%E6%95%99%E7%A8%8B%E5%9C%B0%E5%9D%80"><span class="nav-number">1.</span> <span class="nav-text">Class 1: The Shell (教程地址)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#shell-%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4"><span class="nav-number">1.1.</span> <span class="nav-text">shell 基础指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%B5%81"><span class="nav-number">1.2.</span> <span class="nav-text">输入输出流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%82%E9%A1%B9"><span class="nav-number">1.3.</span> <span class="nav-text">杂项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0"><span class="nav-number">1.4.</span> <span class="nav-text">练习</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#class-2-shell-tools-and-scripting-%E6%95%99%E7%A8%8B%E5%9C%B0%E5%9D%80"><span class="nav-number">2.</span> <span class="nav-text">Class 2: Shell Tools
-and Scripting (教程地址)</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#class-1-the-shell-%E6%95%99%E7%A8%8B%E5%9C%B0%E5%9D%80"><span class="nav-number">1.</span> <span class="nav-text">Class 1: The Shell (教程地址)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#shell-%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4"><span class="nav-number">1.1.</span> <span class="nav-text">shell 基础指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4"><span class="nav-number">1.1.1.</span> <span class="nav-text">显示当前时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%93%E5%8D%B0%E5%86%85%E5%AE%B9%E5%88%B0%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="nav-number">1.1.2.</span> <span class="nav-text">打印内容到命令行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%A8%8B%E5%BA%8F%E5%9C%B0%E5%9D%80"><span class="nav-number">1.1.3.</span> <span class="nav-text">查看程序地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95"><span class="nav-number">1.1.4.</span> <span class="nav-text">查看当前工作目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%87%E6%8D%A2%E5%BD%93%E5%89%8D%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95"><span class="nav-number">1.1.5.</span> <span class="nav-text">切换当前工作目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95%E4%B8%8B%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-number">1.1.6.</span> <span class="nav-text">查看当前工作目录下文件（夹）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E5%91%BD%E5%90%8D%E6%88%96%E7%A7%BB%E5%8A%A8%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-number">1.1.7.</span> <span class="nav-text">重命名或移动文件（夹）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%B7%E8%B4%9D%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-number">1.1.8.</span> <span class="nav-text">拷贝文件（夹）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-number">1.1.9.</span> <span class="nav-text">删除文件（夹）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-number">1.1.10.</span> <span class="nav-text">创建文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%8C%87%E4%BB%A4%E7%94%A8%E6%B3%95"><span class="nav-number">1.1.11.</span> <span class="nav-text">查看指令用法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%B5%81"><span class="nav-number">1.2.</span> <span class="nav-text">输入输出流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%B5%81%E9%87%8D%E5%AE%9A%E5%90%91"><span class="nav-number">1.2.1.</span> <span class="nav-text">输入输出流重定向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9"><span class="nav-number">1.2.2.</span> <span class="nav-text">显示文件内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E8%BF%90%E7%AE%97%E7%AC%A6-pipe"><span class="nav-number">1.2.3.</span> <span class="nav-text">连接运算符 | (pipe)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%86%E8%BE%93%E5%85%A5%E6%B5%81%E9%87%8D%E5%AE%9A%E5%90%91%E8%87%B3%E8%BE%93%E5%87%BA%E6%B5%81"><span class="nav-number">1.2.4.</span> <span class="nav-text">将输入流重定向至输出流</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%82%E9%A1%B9"><span class="nav-number">1.3.</span> <span class="nav-text">杂项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0"><span class="nav-number">1.4.</span> <span class="nav-text">练习</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#class-2-shell-tools-and-scripting-%E6%95%99%E7%A8%8B%E5%9C%B0%E5%9D%80"><span class="nav-number">2.</span> <span class="nav-text">Class 2: Shell Tools
+and Scripting (教程地址)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#shell-%E8%84%9A%E6%9C%ACbash"><span class="nav-number">2.1.</span> <span class="nav-text">Shell 脚本（bash）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6%E5%8F%98%E9%87%8F"><span class="nav-number">2.1.1.</span> <span class="nav-text">复制变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E4%B9%89"><span class="nav-number">2.1.2.</span> <span class="nav-text">转义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bash-%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E5%8F%98%E9%87%8F"><span class="nav-number">2.1.3.</span> <span class="nav-text">bash 中的特殊变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E6%9B%BF%E6%8D%A2command-substitution"><span class="nav-number">2.1.4.</span> <span class="nav-text">命令替换（command
+substitution）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E6%9B%BF%E6%8D%A2process-substitution"><span class="nav-number">2.1.5.</span> <span class="nav-text">进程替换（process
+substitution）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%84%9A%E6%9C%AC%E7%A4%BA%E4%BE%8B"><span class="nav-number">2.1.6.</span> <span class="nav-text">脚本示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E9%85%8Dglobbing"><span class="nav-number">2.1.7.</span> <span class="nav-text">通配（globbing）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%82%E9%A1%B9-1"><span class="nav-number">2.2.</span> <span class="nav-text">杂项</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -673,13 +679,13 @@ and Scripting (教程地址)</span></a></li></ol></div>
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">85k</span>
+    <span title="站点总字数">87k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:17</span>
+    <span title="站点阅读时长">1:19</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
