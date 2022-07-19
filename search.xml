@@ -1,6 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Quoridor AI</title>
+    <url>/2022/07/15/Quoridor-AI/</url>
+    <content><![CDATA[<p>本文是夏季学期PPCA课程Project 2: Quoridor AI的README，具体代码见<a href="https://github.com/MeteorVanish/Quoridor-AI">Github仓库</a></p>
+<span id="more"></span>
+<h1 id="quoridor-ai">Quoridor AI</h1>
+<h2 id="简介">简介</h2>
+<ul>
+<li>上海交通大学，2021级CS，MeteorVanish</li>
+<li>2021-2022学年夏季学期，PPCA Project 2</li>
+<li>用 C++ 实现棋类游戏 <code>Quoridor</code> 的简易AI</li>
+<li>使用算法：<code>Minimax + Alpha-beta Pruning</code> /
+<code>Monte Carlo Tree Search</code></li>
+</ul>
+<h2 id="游戏介绍">游戏介绍</h2>
+<h3 id="基本玩法">基本玩法</h3>
+<p><a href="https://en.wikipedia.org/wiki/Quoridor">Quoridor</a>，中文名为步步为营或是墙棋。棋盘由9×9的格子构成，格子间有凹槽。游戏双方各有一枚1×1的棋子，初始位于上下底边中间；各有10片长度为2格的木板（墙），可放置在凹槽中。玩家每一步可以向四个方向移动一格棋子或是放置一片木板，率先抵达对方底线的玩家获胜。</p>
+<h3 id="细节规则">细节规则</h3>
+<ul>
+<li><strong>移动</strong><br>
+玩家移动方向不能有墙阻挡（边界也算墙），若移动方向被对方棋子阻挡，在对方身后没有墙阻挡的情况下，可以跳过对方棋子，否则可以跳到对方棋子左右两侧（左右两侧没有墙阻挡）</li>
+<li><strong>放墙</strong><br>
+木板之间不能重叠或交叉，每一片木板放置后须保证双方棋子均存在一条抵达对方底线的路线</li>
+</ul>
+<h3 id="游戏特点">游戏特点</h3>
+<ul>
+<li>与围棋、象棋等棋类游戏一样，为Combinatorial
+Game，即具有<strong>零和</strong>（zero-sum），<strong>透明信息</strong>（fully
+information），<strong>确定性</strong>（determinism），顺序性（sequential），<strong>离散性</strong>（discrete）这些特点，因此适合用
+<code>Minimax</code> 或是 <code>MCTS</code>
+这两种算法，来逼近博弈过程的纳什均衡点。</li>
+</ul>
+<h2 id="文件内容">文件内容</h2>
+<ul>
+<li><strong><code>down</code>
+文件夹</strong>：助教下发的所有内容，包括项目要求、代码框架、本地评测程序和学习资料</li>
+<li><strong><code>src</code>
+文件夹</strong>：实现两种算法的AI源程序</li>
+<li><strong><code>exe</code> 文件夹</strong>：两种算法在
+<code>Windows</code> 下编译的 <code>exe</code>
+文件、助教下发的评测程序</li>
+</ul>
+<h2 id="如何运行">如何运行</h2>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">py judge.py &quot;human/AI name 1&quot; &quot;human/AI name 2&quot;</span><br></pre></td></tr></table></figure>
+<p><em>（注：运行评测程序需要本地安装 <code>python</code> 的
+<code>numpy</code> 库）</em></p>
+<h3 id="示例">示例</h3>
+<ul>
+<li>两种不同算法AI对战
+<code>py judge.py "Yosoro! [minimax].exe" "Yosoro! [MCTS].exe"</code></li>
+<li>人人对战 <code>py judge.py human human</code></li>
+<li>人机对战（先手）
+<code>py judge.py human "Yosoro! [minimax].exe"</code></li>
+</ul>
+<h2 id="代码框架">代码框架</h2>
+<p>见 <code>down\sample.cpp</code> 文件</p>
+<ul>
+<li><code>init()</code> 函数：在对局开始前调用一次</li>
+<li><code>action()</code>函数：接受对方操作
+<code>loc</code>，返回己方操作，操作码含义见
+<code>down\README.pdf</code> 文件</li>
+</ul>
+]]></content>
+      <categories>
+        <category>CS学习之路</category>
+      </categories>
+  </entry>
+  <entry>
     <title>RISC-V Simulator</title>
     <url>/2022/07/02/RISC-V-Simulator/</url>
     <content><![CDATA[<p>本文是夏季学期PPCA课程Project 1: RISC-V
@@ -1133,73 +1200,6 @@ Simulator的README，具体代码见<a href="https://github.com/MeteorVanish/RIS
       </categories>
   </entry>
   <entry>
-    <title>Quoridor AI</title>
-    <url>/2022/07/15/Quoridor-AI/</url>
-    <content><![CDATA[<p>本文是夏季学期PPCA课程Project 2: Quoridor AI的README，具体代码见<a href="https://github.com/MeteorVanish/Quoridor-AI">Github仓库</a></p>
-<span id="more"></span>
-<h1 id="quoridor-ai">Quoridor AI</h1>
-<h2 id="简介">简介</h2>
-<ul>
-<li>上海交通大学，2021级CS，MeteorVanish</li>
-<li>2021-2022学年夏季学期，PPCA Project 2</li>
-<li>用 C++ 实现棋类游戏 <code>Quoridor</code> 的简易AI</li>
-<li>使用算法：<code>Minimax + Alpha-beta Pruning</code> /
-<code>Monte Carlo Tree Search</code></li>
-</ul>
-<h2 id="游戏介绍">游戏介绍</h2>
-<h3 id="基本玩法">基本玩法</h3>
-<p><a href="https://en.wikipedia.org/wiki/Quoridor">Quoridor</a>，中文名为步步为营或是墙棋。棋盘由9×9的格子构成，格子间有凹槽。游戏双方各有一枚1×1的棋子，初始位于上下底边中间；各有10片长度为2格的木板（墙），可放置在凹槽中。玩家每一步可以向四个方向移动一格棋子或是放置一片木板，率先抵达对方底线的玩家获胜。</p>
-<h3 id="细节规则">细节规则</h3>
-<ul>
-<li><strong>移动</strong><br>
-玩家移动方向不能有墙阻挡（边界也算墙），若移动方向被对方棋子阻挡，在对方身后没有墙阻挡的情况下，可以跳过对方棋子，否则可以跳到对方棋子左右两侧（左右两侧没有墙阻挡）</li>
-<li><strong>放墙</strong><br>
-木板之间不能重叠或交叉，每一片木板放置后须保证双方棋子均存在一条抵达对方底线的路线</li>
-</ul>
-<h3 id="游戏特点">游戏特点</h3>
-<ul>
-<li>与围棋、象棋等棋类游戏一样，为Combinatorial
-Game，即具有<strong>零和</strong>（zero-sum），<strong>透明信息</strong>（fully
-information），<strong>确定性</strong>（determinism），顺序性（sequential），<strong>离散性</strong>（discrete）这些特点，因此适合用
-<code>Minimax</code> 或是 <code>MCTS</code>
-这两种算法，来逼近博弈过程的纳什均衡点。</li>
-</ul>
-<h2 id="文件内容">文件内容</h2>
-<ul>
-<li><strong><code>down</code>
-文件夹</strong>：助教下发的所有内容，包括项目要求、代码框架、本地评测程序和学习资料</li>
-<li><strong><code>src</code>
-文件夹</strong>：实现两种算法的AI源程序</li>
-<li><strong><code>exe</code> 文件夹</strong>：两种算法在
-<code>Windows</code> 下编译的 <code>exe</code>
-文件、助教下发的评测程序</li>
-</ul>
-<h2 id="如何运行">如何运行</h2>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">py judge.py &quot;human/AI name 1&quot; &quot;human/AI name 2&quot;</span><br></pre></td></tr></table></figure>
-<p><em>（注：运行评测程序需要本地安装 <code>python</code> 的
-<code>numpy</code> 库）</em></p>
-<h3 id="示例">示例</h3>
-<ul>
-<li>两种不同算法AI对战
-<code>py judge.py "Yosoro! [minimax].exe" "Yosoro! [MCTS].exe"</code></li>
-<li>人人对战 <code>py judge.py human human</code></li>
-<li>人机对战（先手）
-<code>py judge.py human "Yosoro! [minimax].exe"</code></li>
-</ul>
-<h2 id="代码框架">代码框架</h2>
-<p>见 <code>down\sample.cpp</code> 文件</p>
-<ul>
-<li><code>init()</code> 函数：在对局开始前调用一次</li>
-<li><code>action()</code>函数：接受对方操作
-<code>loc</code>，返回己方操作，操作码含义见
-<code>down\README.pdf</code> 文件</li>
-</ul>
-]]></content>
-      <categories>
-        <category>CS学习之路</category>
-      </categories>
-  </entry>
-  <entry>
     <title>如何在Hexo博客中插入图片</title>
     <url>/2022/04/23/hexo-insert-pictures/</url>
     <content><![CDATA[<blockquote>
@@ -1245,6 +1245,7 @@ information），<strong>确定性</strong>（determinism），顺序性（seque
     <url>/2022/06/20/missing-semester-notes/</url>
     <content><![CDATA[<p>本文是MIT课程missing-semester的学习笔记，这是一门介绍计算机工具的课，课时比较短，约为11小时，但涵盖的内容比较丰富。</p>
 <span id="more"></span>
+<hr>
 <h1 id="class-1-the-shell-教程地址">Class 1: The Shell (<a href="https://missing.csail.mit.edu/2020/course-shell/">教程地址</a>)</h1>
 <h2 id="shell-基础指令">shell 基础指令</h2>
 <h3 id="显示当前时间">显示当前时间</h3>
@@ -1275,14 +1276,14 @@ information），<strong>确定性</strong>（determinism），顺序性（seque
 </blockquote>
 <h3 id="查看当前工作目录">查看当前工作目录</h3>
 <ul>
-<li><strong>命令：</strong><code>pwd</code> [<strong>p</strong>rint
-<strong>w</strong>orking <strong>d</strong>irectory]</li>
+<li><strong>命令：</strong><code>pwd</code> &lt;<strong>p</strong>rint
+<strong>w</strong>orking <strong>d</strong>irectory&gt;</li>
 <li><strong>示例：</strong> <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">pwd</span>   <span class="comment"># /c/Users/MeteorVanish</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="切换当前工作目录">切换当前工作目录</h3>
 <ul>
 <li><strong>命令：</strong><code>cd [绝对/相对路径]</code>
-[<strong>c</strong>hange <strong>d</strong>irectory]
+&lt;<strong>c</strong>hange <strong>d</strong>irectory&gt;
 <ul>
 <li>绝对路径：<code>cd /xxx</code></li>
 <li>相对路径：<code>.</code> 表示当前目录，<code>..</code>
@@ -1293,7 +1294,7 @@ information），<strong>确定性</strong>（determinism），顺序性（seque
 <h3 id="查看当前工作目录下文件夹">查看当前工作目录下文件（夹）</h3>
 <ul>
 <li><p><strong>命令：</strong><code>ls [ 打印目录（默认当前工作目录）]</code>
-[<strong>l</strong>i<strong>s</strong>t]</p></li>
+&lt;<strong>l</strong>i<strong>s</strong>t&gt;</p></li>
 <li><p><strong>示例：</strong> <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment">#（当前在 /）</span></span><br><span class="line"><span class="built_in">ls</span>   <span class="comment"># bin dev home ...</span></span><br><span class="line"><span class="built_in">ls</span> sys   <span class="comment"># block  bus  class  dev  devices  firmware  fs  kernel  module  power</span></span><br></pre></td></tr></table></figure></p></li>
 <li><p><code>ls -l</code></p>
 <ul>
@@ -1317,31 +1318,32 @@ information），<strong>确定性</strong>（determinism），顺序性（seque
 <h3 id="重命名或移动文件夹">重命名或移动文件（夹）</h3>
 <ul>
 <li><strong>命令：</strong><code>mv [原文件（夹）名] [新文件（夹）名]</code>，<code>mv [原文件（夹）地址] [新文件（夹）地址]</code>
-(<strong>m</strong>o<strong>v</strong>e)</li>
+&lt;<strong>m</strong>o<strong>v</strong>e&gt;</li>
 <li><strong>示例：</strong> <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mv</span> old.md new.md   <span class="comment"># 将 old.md 重命名为 new.md</span></span><br><span class="line"><span class="built_in">mv</span> test.md ../dir2/test.md   <span class="comment">#（当前在 dir1 ）将 dir1 中的 test.md 移动到 dir2 中</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="拷贝文件夹">拷贝文件（夹）</h3>
 <ul>
 <li><strong>命令：</strong><code>cp [原文件（夹）名] [新文件（夹）名]</code>
-[<strong>c</strong>o<strong>p</strong>y]</li>
+&lt;<strong>c</strong>o<strong>p</strong>y&gt;</li>
 <li><strong>示例：</strong> <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> test.md ../dir2/test.md   <span class="comment">#（当前在 dir1 ）将 dir1 中的 test.md 拷贝到 dir2 中</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="删除文件夹">删除文件（夹）</h3>
 <ul>
-<li><strong>命令：</strong><code>rm [文件名]</code>，<code>rm -r [文件夹名]</code>，<code>rmdir [文件夹名]</code>（仅当文件夹为空时有效）[<strong>r</strong>e<strong>m</strong>ove
-(<strong>dir</strong>ectory)]</li>
+<li><strong>命令：</strong><code>rm [文件名]</code>，<code>rm -r [文件夹名]</code>，<code>rmdir [文件夹名]</code>（仅当文件夹为空时有效）&lt;<strong>r</strong>e<strong>m</strong>ove
+(<strong>dir</strong>ectory)&gt;</li>
 <li><strong>示例：</strong> <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">rm</span> test.md   <span class="comment"># 删除文件 test.md</span></span><br><span class="line"><span class="built_in">rm</span> -r dir1   <span class="comment"># 删除文件夹 dir1 及其中的所有文件</span></span><br><span class="line"><span class="built_in">rmdir</span> dir2   <span class="comment"># 删除空文件夹 dir2</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="创建文件夹">创建文件夹</h3>
 <ul>
 <li><strong>命令：</strong><code>mkdir [文件夹名]</code>
-[<strong>m</strong>a<strong>k</strong>e <strong>dir</strong>ectory]</li>
+&lt;<strong>m</strong>a<strong>k</strong>e
+<strong>dir</strong>ectory&gt;</li>
 <li><strong>示例：</strong> <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> dir2   <span class="comment"># 在当前目录新建名为 dir2 的文件夹</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="查看指令用法">查看指令用法</h3>
 <ul>
 <li><strong>命令：</strong><code>man [指令]</code>
-[<strong>man</strong>ual]，<code>[指令] --help</code></li>
+&lt;<strong>man</strong>ual&gt;，<code>[指令] --help</code></li>
 </ul>
 <h2 id="输入输出流">输入输出流</h2>
 <h3 id="输入输出流重定向">输入输出流重定向</h3>
@@ -1353,7 +1355,7 @@ information），<strong>确定性</strong>（determinism），顺序性（seque
 <h3 id="显示文件内容">显示文件内容</h3>
 <ul>
 <li><strong>命令：</strong><code>cat [文件名/输入流]</code>
-[con<strong>cat</strong>enate]</li>
+&lt;con<strong>cat</strong>enate&gt;</li>
 <li><strong>示例：</strong> <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cat</span> hello.txt   <span class="comment"># hello</span></span><br><span class="line"><span class="built_in">cat</span> &lt; hello.txt   <span class="comment"># hello</span></span><br><span class="line"><span class="built_in">cat</span> &lt; hello.txt &gt; hello2.txt   <span class="comment"># 在 hello2.txt 中写入 hello.txt 的内容（在 hello2.txt 不存在时作用与 cp 相同）</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="连接运算符-pipe">连接运算符 <code>|</code> (pipe)</h3>
@@ -1408,6 +1410,7 @@ curl --head --silent https://missing.csail.mit.edu</p>
 <p><strong>11. 写一段命令来从 <code>/sys</code>
 中获取笔记本的电量信息</strong></p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /sys/class/power_supply/battery</span><br><span class="line"><span class="built_in">cat</span> capacity</span><br></pre></td></tr></table></figure>
+<hr>
 <h1 id="class-2-shell-tools-and-scripting-教程地址">Class 2: Shell Tools
 and Scripting (<a href="https://missing.csail.mit.edu/2020/shell-tools/">教程地址</a>)</h1>
 <h2 id="shell-脚本bash">shell 脚本（bash）</h2>
@@ -1611,6 +1614,209 @@ stderr 输出流<br>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">find . -<span class="built_in">type</span> f -mmin -60 -print0 | xargs -0 <span class="built_in">ls</span> -lt | <span class="built_in">head</span> -10</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p><code>-mmin</code>：文件最后修改时间，<code>-print0</code>：打印以空字符分隔，<code>-0</code>：以空字符分隔</p>
+</blockquote>
+<hr>
+<h1 id="class-3-editors-vim-教程地址">Class 3: Editors (Vim) (<a href="https://missing.csail.mit.edu/2020/editors/">教程地址</a>)</h1>
+<h2 id="编辑模式">编辑模式</h2>
+<ul>
+<li><strong>正常模式
+[Normal]：</strong>在文件中四处移动光标进行修改</li>
+<li><strong>插入模式 [Insert]：</strong>插入文本</li>
+<li><strong>替换模式 [Replace]：</strong>替换文本</li>
+<li><strong>可视化（一般/行/块）模式 [Visual
+(plain/line/block)]：</strong>选中文本块</li>
+<li><strong>命令模式 [Command-line]</strong>：用于执行命令</li>
+</ul>
+<h4 id="切换快捷键">切换快捷键</h4>
+<ul>
+<li>按下 <code>&lt;ESC&gt;</code>
+从任何其他模式返回正常模式<strong>（个人将 <code>jk</code> 重映射为
+<code>ESC</code>）</strong></li>
+<li>在正常模式，按下 <code>i</code> 进入插入模式， <code>R</code>
+进入替换模式， <code>v</code> 进入可视（一般）模式， <code>V</code>
+进入可视（行）模式，<code>^V</code> 进入可视（块）模式，<code>:</code>
+进入命令模式</li>
+</ul>
+<h2 id="基本操作">基本操作</h2>
+<h3 id="命令行">命令行</h3>
+<ul>
+<li><strong><code>:q</code></strong> &lt;<strong>q</strong>uit&gt;
+退出（关闭窗口）</li>
+<li><strong><code>:w</code></strong> &lt;<strong>w</strong>rite&gt;
+保存（写）</li>
+<li><strong><code>:wq</code></strong> 保存然后退出</li>
+<li><strong><code>:e [文件名]</code></strong>
+&lt;<strong>e</strong>dit&gt; 打开要编辑的文件</li>
+<li><strong><code>:ls</code></strong>
+&lt;<strong>l</strong>i<strong>s</strong>t&gt; 显示打开的缓存</li>
+<li><strong><code>:help [指令]</code></strong> 打开帮助文档
+<ul>
+<li><code>:help :w</code> 打开 <code>:w</code> 命令的帮助文档</li>
+<li><code>:help w</code> 打开 <code>w</code> 移动的帮助文档</li>
+</ul></li>
+</ul>
+<h3 id="移动">移动</h3>
+<ul>
+<li><strong>基本移动：</strong><code>hjkl</code>（左，下，上，右）</li>
+<li><strong>词：</strong><code>w</code>（下一个词
+<strong>w</strong>ord），<code>b</code>（词初
+<strong>b</strong>egin），<code>e</code>（词尾
+<strong>e</strong>nd）</li>
+<li><strong>行：</strong><code>0</code>（行初），<code>^</code>（第一个非空格字符），<code>$</code>（行尾）</li>
+<li><strong>屏幕：</strong><code>H</code>（屏幕首行
+<strong>H</strong>igh），<code>M</code>（屏幕中间
+<strong>M</strong>iddle），<code>L</code>（屏幕底部
+<strong>L</strong>ow）</li>
+<li><strong>翻页：</strong><code>^U</code>（上翻
+<strong>u</strong>p），<code>^D</code>（下翻
+<strong>d</strong>own）</li>
+<li><strong>文件：</strong><code>gg</code>（文件头），<code>G</code>（文件尾）</li>
+<li><strong>行号：</strong><code>[行号]G</code></li>
+<li><strong>查找：</strong><code>f[字符]</code>（向后查找
+<strong>f</strong>ind），<code>F[字符]</code>（向前查找
+<strong>F</strong>ind），<code>t[字符]</code>（向后跳跃
+<strong>t</strong>o），<code>T[字符]</code>（向前跳跃
+<strong>T</strong>o）
+<ul>
+<li>在本行内，查找光标到字符上，跳跃光标到字符前/后</li>
+<li><code>,</code> / <code>;</code> 用于导航匹配</li>
+</ul></li>
+<li><strong>杂项：</strong><code>%</code>（找到配对，比如括号或者 /* */
+之类的注释对）</li>
+<li><strong>搜索：</strong><code>/[字符串]</code>（正向），<code>?[字符串]</code>（反向）
+<ul>
+<li><code>n</code> / <code>N</code> 用于导航匹配</li>
+</ul></li>
+</ul>
+<h3 id="编辑">编辑</h3>
+<ul>
+<li><strong><code>O</code> / <code>o</code></strong>
+在当前行之上/之下插入空白行</li>
+<li><strong><code>d[移动命令]</code></strong>
+&lt;<strong>d</strong>elete&gt; 删除 [移动命令]
+<ul>
+<li><strong><code>dd</code></strong> 删除当前行</li>
+<li><strong>示例：</strong><code>dw</code> 删除词，<code>d$</code>
+删除到行尾，<code>d0</code> 删除到行头</li>
+</ul></li>
+<li><strong><code>c[移动命令]</code></strong>
+&lt;<strong>c</strong>hange&gt; 改变 [移动命令]
+<ul>
+<li>作用等同于 <code>d[移动命令]</code> 后 <code>i</code></li>
+<li><strong><code>cc</code></strong> 删除当前行并进入插入模式</li>
+<li><strong>示例：</strong><code>cw</code> 改变词，<code>c$</code>
+改变到行尾，<code>c0</code> 改变到行头</li>
+</ul></li>
+<li><strong><code>x</code></strong> 删除字符（等同于 <code>dl</code>
+）</li>
+<li><strong><code>s</code></strong> 删除替换字符（等同于 <code>xi</code>
+）</li>
+<li><strong><code>r</code></strong> &lt;<strong>r</strong>eplace&gt;
+直接替换字符</li>
+<li><strong><code>u</code></strong> &lt;<strong>u</strong>ndo&gt;
+撤销，<strong><code>^R</code></strong> &lt;<strong>r</strong>edo&gt;
+重做</li>
+<li><strong><code>y</code></strong> &lt;<strong>y</strong>ank&gt;
+复制，<strong><code>p</code></strong> &lt;<strong>p</strong>aste&gt;
+粘贴</li>
+<li><strong><code>~</code></strong> 改变字符的大小写</li>
+<li><strong><code>.</code></strong> 重复刚才的输入内容</li>
+</ul>
+<h3 id="计数">计数</h3>
+<p>用一个计数来结合“名词”和“动词”会执行指定操作若干次。 -
+<strong>示例：</strong> - <code>3w</code> 向前移动三个词 -
+<code>5j</code> 向下移动5行 - <code>7dw</code> 删除7个词</p>
+<h3 id="修饰语">修饰语</h3>
+<ul>
+<li><strong><code>i</code></strong> &lt;<strong>i</strong>nside&gt;
+表示“内部”，<strong><code>a</code></strong>
+&lt;<strong>a</strong>round&gt; 表示“周围”</li>
+<li><strong>示例：</strong>
+<ul>
+<li><code>ci(</code> 改变当前括号内的内容</li>
+<li><code>ci[</code> 改变当前方括号内的内容</li>
+<li><code>da'</code> 删除一个单引号字符串，包括周围的单引号</li>
+</ul></li>
+</ul>
+<h2 id="练习-2">练习</h2>
+<p><strong>1. 完成 <code>vimtutor</code></strong></p>
+<blockquote>
+<p><strong>OK!</strong></p>
+</blockquote>
+<p><strong>学习到新的内容：</strong></p>
+<ul>
+<li><code>^G</code> 显示当前行号</li>
+<li><code>^O</code> 回退到之前位置，<code>^I</code> 跳转到新的位置</li>
+<li>替换命令
+<ul>
+<li><code>:s/old/new</code> 替换光标所在行第一个匹配串</li>
+<li><code>:s/old/new/g</code> 替换光标所在行所有匹配串</li>
+<li><code>:[起始行号],[终止行号]s/old/new/g</code>
+替换指定行号之间的匹配串</li>
+<li><code>:%s/old/new/g</code> 替换整个文件中的每个匹配串</li>
+<li><code>:%s/old/new/gc</code>
+找到整个文件中的每个匹配串，并且对每个匹配串 提示是否进行替换</li>
+</ul></li>
+<li><code>:w [FILENAME]</code> 将当前正在编辑的文件保存到名为
+<code>FILENAME</code> 的文 件中
+<ul>
+<li>可以单独保存可视模式下选中内容</li>
+</ul></li>
+<li><code>:! [指令]</code> 使用外部指令</li>
+<li><code>:r [文件名]</code> 插入外部文件内容
+<ul>
+<li><strong>示例：</strong><code>r !ls</code> 在光标处插入
+<code>shell</code> 中当前目录 <code>ls</code> 打印内容</li>
+</ul></li>
+</ul>
+<p><strong>2. 下载我们提供的 <a href="https://missing-semester-cn.github.io/2020/files/vimrc">vimrc</a>，然后把它保存到
+<code>~/.vimrc</code>，并通读这个注释详细的文件 ， 观察 <code>Vim</code>
+在这个新的设置下看起来和使用起来有哪些细微的区别。</strong></p>
+<blockquote>
+<p><strong>OK!</strong></p>
+</blockquote>
+<p><strong>3. 安装和配置一个插件 <a href="https://github.com/ctrlpvim/ctrlp.vim">ctrlp.vim</a></strong></p>
+<blockquote>
+<ol type="1">
+<li>用 <code>mkdir -p ~/.vim/pack/vendor/start</code>
+创建插件文件夹</li>
+<li>下载这个插件：
+<code>cd ~/.vim/pack/vendor/start; git clone https://github.com/ctrlpvim/ctrlp.vim</code></li>
+<li>阅读这个插件的 <a href="https://github.com/ctrlpvim/ctrlp.vim/blob/master/readme.md">文档</a>。
+尝试用 CtrlP 来在一个工程文件夹里定位一个文件， 打开 Vim, 然后用 Vim
+命令控制行开始 <code>:CtrlP</code>.</li>
+<li>自定义 CtrlP：添加 <a href="https://github.com/ctrlpvim/ctrlp.vim/blob/master/readme.md#basic-options">configuration</a>
+到你的 <code>~/.vimrc</code> 来用按 <code>^P</code> 打开 CtrlP</li>
+</ol>
+</blockquote>
+<blockquote>
+<p><strong>跳过</strong></p>
+</blockquote>
+<p><strong>4. 练习使用 Vim, 在你自己的机器上重做演示。</strong></p>
+<blockquote>
+<p><strong>OK!</strong></p>
+</blockquote>
+<p><strong>5. 下个月用 Vim
+完成_所有的_文件编辑。每当不够高效的时候，或者你感觉
+“一定有一个更好的方式”时，
+尝试求助搜索引擎，很有可能有一个更好的方式。如果你遇到难题，可以来我们的答疑时间或者给我们发邮件。</strong></p>
+<blockquote>
+<p><strong>OK!</strong></p>
+</blockquote>
+<p><strong>6. 在其他工具中设置 <code>Vim</code> 快捷键
+（见上面的操作指南）。</strong></p>
+<blockquote>
+<p><strong>OK!</strong></p>
+</blockquote>
+<p><strong>7. 进一步自定义你的 <code>~/.vimrc</code>
+和安装更多插件。</strong></p>
+<blockquote>
+<p><strong>OK!</strong></p>
+</blockquote>
+<p><strong>8. （高阶）用 Vim 宏将 XML 转换到 JSON (<a href="https://missing-semester-cn.github.io/2020/files/example-data.xml">例子文件</a>)。
+尝试着先完全自己做，但是在你卡住的时候可以查看上面<a href="https://missing-semester-cn.github.io/2020/editors/#macros">宏</a>章节。</strong></p>
+<blockquote>
+<p><strong>跳过</strong></p>
 </blockquote>
 ]]></content>
       <categories>
